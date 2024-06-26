@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>State Master</title>
+</head>
+<body>
+    <h1>State Master Form</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td><label for="state_name">State Name:</label></td>
+                <td><input type="text" name="state_name" id="state_name" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="state_shortcut">State Shortcut:</label></td>
+                <td><input type="text" name="state_shortcut" id="state_shortcut" maxlength="3" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

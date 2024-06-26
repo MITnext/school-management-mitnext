@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Religion Detail</title>
+</head>
+<body>
+    <h1>{{ religion.re_name }}</h1>
+    <p>{{ religion.description }}</p>
+    <a href="{% url 'religion_edit' religion.pk %}">Edit</a>
+    <a href="{% url 'religion_delete' religion.pk %}">Delete</a>
+    <a href="{% url 'religion_list' %}">Back to List</a>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StdClass Master</title>
+</head>
+<body>
+    <h1>StdClass Master Form</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td><label for="class_name">Class Name:</label></td>
+                <td><input type="text" name="class_name" id="class_name" maxlength="15" required></td>
+            </tr>
+            <tr>
+                <td><label for="section">Section:</label></td>
+                <td><select name="section" id="section" required>
+                    {% for section in sections %}
+                        <option value="{{ section.id }}">{{ section.sec_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="teacher">Teacher:</label></td>
+                <td><input type="text" name="teacher" id="teacher" maxlength="10" required></td>
+            </tr>
+            <tr>
+                <td><label for="description">Description:</label></td>
+                <td><textarea name="description" id="description" ></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit">
+                     <a href="{% url 'section_list' %}">Cancel</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+

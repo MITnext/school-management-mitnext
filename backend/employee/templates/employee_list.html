@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+</head>
+<body>
+<div class="container mt-5 bg-light" style="border:1px solid ; background-color:#1111; border-radius: 10px;">
+    <h1 class="m-4 text-center">Employee Records <a href="/add_employee" class="btn btn-primary">Add Employee</a></h1>
+    <table border="3" class="table table-bordered" cellpadding="5px">
+        <tr class="bg-info text-white text-center ">
+            <td > SR NO.  </td>
+            <td> Employee Id </td>
+            <td> Name </td>
+            <td> Phone No.  </td>
+            <td> Email </td>
+            <td> Address  </td>
+            <td> Qualification  </td>
+            <td> Date of Joining  </td>
+            <td> Gender  </td>
+            <td> Date of Birth</td>
+            <td> Marital Status</td>
+            <td> Father or Husband</td>
+            <td> Experience</td>
+            <td> Blood Group</td>
+            <td> Aadhar Number</td>
+            <td> Pan Number</td>
+            <td> Type</td>
+            <td> Leaving Date</td>
+            <td> Leaving Reason</td>
+            <td> Photo</td>
+            <td> Salary</td>
+
+        </tr>
+        {%for emp in employees%} 
+        <tr class="text-center">
+            <td>{{forloop.counter}}</td>
+            <td>{{emp.employee_id}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.phone_no}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.address}}</td>
+            <td>{{emp.qualification}}</td>
+            <td>{{emp.date_of_joining}}</td>
+            <td>{{emp.gender}}</td>
+            <td>{{emp.dob}}</td>
+            <td>{{emp.marital_status}}</td>
+            <td>{{emp.father_or_husband}}</td>
+            <td>{{emp.experience}}</td>
+            <td>{{emp.blood_group}}</td>
+            <td>{{emp.aadhar}}</td>
+            <td>{{emp.pan}}</td>
+            <td>{{emp.type}}</td>
+            <td>{{emp.leaving_date}}</td>
+            <td>{{emp.leaving_reason}}</td>
+            <td>{{emp.photo}}</td>
+            <td>{{emp.salary}}</td>
+
+            <td><a href="">Delete</a></td>
+        </tr>
+    {%endfor%}
+    </table>
+</div>
+</body>
+</html>

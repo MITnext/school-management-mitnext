@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Personal Details</title>
+</head>
+<body>
+    <h1>Student Personal Details Form</h1>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td><label for="std_id">Student ID:</label></td>
+                <td><input type="text" name="std_id" id="std_id" maxlength="10" required></td>
+            </tr>
+            <tr>
+                <td><label for="std_first_name">First Name:</label></td>
+                <td><input type="text" name="std_first_name" id="std_first_name" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="std_middle_name">Middle Name:</label></td>
+                <td><input type="text" name="std_middle_name" id="std_middle_name" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="std_last_name">Last Name:</label></td>
+                <td><input type="text" name="std_last_name" id="std_last_name" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="photo">Photo:</label></td>
+                <td><input type="file" name="photo" id="photo"></td>
+            </tr>
+            <tr>
+                <td><label for="gender">Gender:</label></td>
+                <td><select name="gender" id="gender" required>
+                    {% for choice in gender_choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="blood_group">Blood Group:</label></td>
+                <td><select name="blood_group" id="blood_group" required>
+                    {% for choice in blood_group_choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="admission_date">Admission Date:</label></td>
+                <td><input type="date" name="admission_date" id="admission_date" required></td>
+            </tr>
+            <tr>
+                <td><label for="std_class">Class:</label></td>
+                <td><select name="std_class" id="std_class" required>
+                    {% for cls in classes %}
+                        <option value="{{ cls.id }}">{{ cls.class_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="std_section">Section:</label></td>
+                <td><select name="std_section" id="std_section" required>
+                    {% for section in sections %}
+                        <option value="{{ section.id }}">{{ section.sec_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="std_rollno">Roll Number:</label></td>
+                <td><input type="number" name="std_rollno" id="std_rollno" required></td>
+            </tr>
+            <tr>
+                <td><label for="dateofbirth">Date of Birth:</label></td>
+                <td><input type="date" name="dateofbirth" id="dateofbirth" required></td>
+            </tr>
+            <tr>
+                <td><label for="birth_place">Birth Place:</label></td>
+                <td><textarea name="birth_place" id="birth_place" required></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="aadharnumber">Aadhar Number:</label></td>
+                <td><input type="number" name="aadharnumber" id="aadharnumber" required></td>
+            </tr>
+            <tr>
+                <td><label for="aadharcard">Aadhar Card:</label></td>
+                <td><input type="file" name="aadharcard" id="aadharcard"></td>
+            </tr>
+            <tr>
+                <td><label for="caste_main">Main Caste:</label></td>
+                <td><select name="caste_main" id="caste_main" required>
+                    {% for caste in main_castes %}
+                        <option value="{{ caste.id }}">{{ caste.maincaste_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="caste_sub">Sub Caste:</label></td>
+                <td><select name="caste_sub" id="caste_sub" required>
+                    {% for caste in sub_castes %}
+                        <option value="{{ caste.id }}">{{ caste.castesub_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="religion">Religion:</label></td>
+                <td><select name="religion" id="religion" required>
+                    {% for religion in religions %}
+                        <option value="{{ religion.id }}">{{ religion.religion_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="ph_number_father">Father's Phone Number:</label></td>
+                <td><input type="number" name="ph_number_father" id="ph_number_father" required></td>
+            </tr>
+            <tr>
+                <td><label for="ph_number_mother">Mother's Phone Number:</label></td>
+                <td><input type="number" name="ph_number_mother" id="ph_number_mother" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" name="email" id="email"></td>
+            </tr>
+            <tr>
+                <td><label for="local_address">Local Address:</label></td>
+                <td><textarea name="local_address" id="local_address" required></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="postal_address">Postal Address:</label></td>
+                <td><textarea name="postal_address" id="postal_address" required></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="postal_city">Postal City:</label></td>
+                <td><input type="text" name="postal_city" id="postal_city" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="postal_state">Postal State:</label></td>
+                <td><input type="text" name="postal_state" id="postal_state" maxlength="50" required></td>
+            </tr>
+            <tr>
+                <td><label for="postal_zip_code">Postal Zip Code:</label></td>
+                <td><input type="number" name="postal_zip_code" id="postal_zip_code" required></td>
+            </tr>
+            <tr>
+                <td><label for="father_occupation">Father's Occupation:</label></td>
+                <td><input type="text" name="father_occupation" id="father_occupation" maxlength="50" required></td>
+            </tr>
+            <tr>
+                <td><label for="mother_occupation">Mother's Occupation:</label></td>
+                <td><input type="text" name="mother_occupation" id="mother_occupation" maxlength="50" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

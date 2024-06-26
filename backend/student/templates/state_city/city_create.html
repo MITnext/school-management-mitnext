@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>City Master</title>
+</head>
+<body>
+    <h1>City Master Form</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td><label for="state">State:</label></td>
+                <td><select name="state" id="state" required>
+                    {% for state in states %}
+                        <option value="{{ state.id }}">{{ state.state_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="city_name">City Name:</label></td>
+                <td><input type="text" name="city_name" id="city_name" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="city_shortcut">City Shortcut:</label></td>
+                <td><input type="text" name="city_shortcut" id="city_shortcut" maxlength="4" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

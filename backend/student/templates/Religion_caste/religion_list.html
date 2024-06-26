@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Religion List</title>
+</head>
+<body>
+    <h1>Religion List</h1>
+    <a href="{% url 'religion_create' %}">Add New Religion</a>
+    <ul>
+        {% for religion in religions %}
+        <li>
+            <a href="{% url 'religion_detail' religion.pk %}">{{ religion.re_name }}</a>
+            <a href="{% url 'religion_edit' religion.pk %}">Edit</a>
+            <a href="{% url 'religion_delete' religion.pk %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

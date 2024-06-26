@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Previous School Details</title>
+</head>
+<body>
+    <h1>Previous School Details Form</h1>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td><label for="student">Student:</label></td>
+                <td><select name="student" id="student" required>
+                    {% for student in students %}
+                        <option value="{{ student.id }}">{{ student.std_first_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="school_name">School Name:</label></td>
+                <td><input type="text" name="school_name" id="school_name" maxlength="255" required></td>
+            </tr>
+            <tr>
+                <td><label for="school_board">School Board:</label></td>
+                <td><input type="text" name="school_board" id="school_board" maxlength="255" required></td>
+            </tr>
+            <tr>
+                <td><label for="school_address">School Address:</label></td>
+                <td><textarea name="school_address" id="school_address" required></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="school_city">School City:</label></td>
+                <td><input type="text" name="school_city" id="school_city" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="school_state">School State:</label></td>
+                <td><input type="text" name="school_state" id="school_state" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="school_zip_code">School Zip Code:</label></td>
+                <td><input type="text" name="school_zip_code" id="school_zip_code" maxlength="20" required></td>
+            </tr>
+            <tr>
+                <td><label for="school_phone_number">School Phone Number:</label></td>
+                <td><input type="text" name="school_phone_number" id="school_phone_number" maxlength="20"></td>
+            </tr>
+            <tr>
+                <td><label for="grade_attended">Grade Attended:</label></td>
+                <td><input type="text" name="grade_attended" id="grade_attended" maxlength="50" required></td>
+            </tr>
+            <tr>
+                <td><label for="start_date">Start Date:</label></td>
+                <td><input type="date" name="start_date" id="start_date" required></td>
+            </tr>
+            <tr>
+                <td><label for="end_date">End Date:</label></td>
+                <td><input type="date" name="end_date" id="end_date" required></td>
+            </tr>
+            <tr>
+                <td><label for="reason_for_leaving">Reason for Leaving:</label></td>
+                <td><textarea name="reason_for_leaving" id="reason_for_leaving"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="transfer_certificate">Transfer Certificate:</label></td>
+                <td><input type="file" name="transfer_certificate" id="transfer_certificate"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

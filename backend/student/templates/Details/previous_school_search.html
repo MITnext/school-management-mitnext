@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Previous School List</title>
+</head>
+<body>
+    <h1>Previous School List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>School Name</th>
+                <th>Board</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip Code</th>
+                <th>Phone Number</th>
+                <th>Grade Attended</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason for Leaving</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for school in schools %}
+            <tr>
+                <td>{{ school.school_name }}</td>
+                <td>{{ school.school_board }}</td>
+                <td>{{ school.school_address }}</td>
+                <td>{{ school.school_city }}</td>
+                <td>{{ school.school_state }}</td>
+                <td>{{ school.school_zip_code }}</td>
+                <td>{{ school.school_phone_number }}</td>
+                <td>{{ school.grade_attended }}</td>
+                <td>{{ school.start_date }}</td>
+                <td>{{ school.end_date }}</td>
+                <td>{{ school.reason_for_leaving }}</td>
+                <td>
+                    <a href="{% url 'previous_school_update' school.pk %}">Edit</a>
+                    <a href="{% url 'previous_school_delete' school.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

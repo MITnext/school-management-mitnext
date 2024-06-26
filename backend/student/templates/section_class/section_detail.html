@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Section Detail</title>
+</head>
+<body>
+    <h1>{{ section.sec_name }}</h1>
+    <p>{{ section.description }}</p>
+    <a href="{% url 'section_edit' section.pk %}">Edit</a>
+    <a href="{% url 'section_delete' section.pk %}">Delete</a>
+    <a href="{% url 'section_list' %}">Back to List</a>
+</body>
+</html>

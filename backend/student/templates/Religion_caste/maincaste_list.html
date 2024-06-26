@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Caste List</title>
+</head>
+<body>
+    <h1>Caste List</h1>
+    <a href="{% url 'maincaste_create' %}">Add New Caste</a>
+    <ul>
+        {% for caste in castes %}
+        <li>
+            <a href="{% url 'maincaste_detail' caste.pk %}">{{ caste.main_type }} - {{ caste.sub_type }}</a>
+            <a href="{% url 'maincaste_edit' caste.pk %}">Edit</a>
+            <a href="{% url 'maincaste_delete' caste.pk %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
