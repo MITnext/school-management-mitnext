@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Personal Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Student Personal Details Form</h1>
@@ -18,32 +20,51 @@
                 <td><input type="text" name="std_first_name" id="std_first_name" maxlength="100" required></td>
             </tr>
             <tr>
-                <td><label for="std_middle_name">Middle Name:</label></td>
-                <td><input type="text" name="std_middle_name" id="std_middle_name" maxlength="100" required></td>
+                <td><label for="father_name">Father Name:</label></td>
+                <td><input type="text" name="father_name" id="father_name" maxlength="100" required></td>
             </tr>
             <tr>
-                <td><label for="std_last_name">Last Name:</label></td>
-                <td><input type="text" name="std_last_name" id="std_last_name" maxlength="100" required></td>
+                <td><label for="surname">Surname:</label></td>
+                <td><input type="text" name="surname" id="surname" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="mother_name">Mother Name:</label></td>
+                <td><input type="text" name="mother_name" id="mother_name" maxlength="100" required></td>
             </tr>
             <tr>
                 <td><label for="photo">Photo:</label></td>
                 <td><input type="file" name="photo" id="photo"></td>
             </tr>
             <tr>
-                <td><label for="gender">Gender:</label></td>
-                <td><select name="gender" id="gender" required>
-                    {% for choice in gender_choices %}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                </select></td>
+                <td>
+                    <label for="gender">Gender:</label>
+                </td>
+                <td>
+                    <select name="gender" id="gender">
+                          <option value="">Select</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                    </select>
+                </td>
             </tr>
             <tr>
-                <td><label for="blood_group">Blood Group:</label></td>
-                <td><select name="blood_group" id="blood_group" required>
-                    {% for choice in blood_group_choices %}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                </select></td>
+                <td>
+                    <label for="blood_group">Blood Group:</label>
+                </td>
+                <td>
+                    <select name="blood_group" id="blood_group">
+                          <option value="">Select</option>
+                          <option value="A+">A+</option>
+                          <option value="A-">A-</option>
+                          <option value="B+">B+</option>
+                          <option value="B-">B-</option>
+                          <option value="O+">O+</option>
+                          <option value="O-">O-</option>
+                          <option value="AB+">AB+</option>
+                          <option value="AB-">AB-</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td><label for="admission_date">Admission Date:</label></td>
@@ -52,16 +73,18 @@
             <tr>
                 <td><label for="std_class">Class:</label></td>
                 <td><select name="std_class" id="std_class" required>
-                    {% for cls in classes %}
-                        <option value="{{ cls.id }}">{{ cls.class_name }}</option>
+                        <option>Select</option>
+                    {% for i in stdclass %}
+                        <option value="{{ i.id }}">{{ i.class_name }}</option>
                     {% endfor %}
                 </select></td>
             </tr>
             <tr>
                 <td><label for="std_section">Section:</label></td>
                 <td><select name="std_section" id="std_section" required>
-                    {% for section in sections %}
-                        <option value="{{ section.id }}">{{ section.sec_name }}</option>
+                        <option>Select</option>
+                    {% for i in sections %}
+                        <option value="{{ i.id }}">{{ i.sec_name }}</option>
                     {% endfor %}
                 </select></td>
             </tr>
@@ -78,7 +101,7 @@
                 <td><textarea name="birth_place" id="birth_place" required></textarea></td>
             </tr>
             <tr>
-                <td><label for="aadharnumber">Aadhar Number:</label></td>
+                <td><label for="aadharnumber">U.I.D(Aadhar Number):</label></td>
                 <td><input type="number" name="aadharnumber" id="aadharnumber" required></td>
             </tr>
             <tr>
@@ -86,26 +109,29 @@
                 <td><input type="file" name="aadharcard" id="aadharcard"></td>
             </tr>
             <tr>
+                <td><label for="religion">Religion:</label></td>
+                <td><select name="religion" id="religion" required>
+                    <option>Select</option>
+                    {% for religion in religions %}
+                        <option value="{{ religion.id }}">{{ religion.religion_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
                 <td><label for="caste_main">Main Caste:</label></td>
                 <td><select name="caste_main" id="caste_main" required>
-                    {% for caste in main_castes %}
-                        <option value="{{ caste.id }}">{{ caste.maincaste_name }}</option>
+                    <option>Select</option>
+                    {% for i in castem %}
+                        <option value="{{ i.id }}">{{ i.maincaste_name }}</option>
                     {% endfor %}
                 </select></td>
             </tr>
             <tr>
                 <td><label for="caste_sub">Sub Caste:</label></td>
                 <td><select name="caste_sub" id="caste_sub" required>
-                    {% for caste in sub_castes %}
-                        <option value="{{ caste.id }}">{{ caste.castesub_name }}</option>
-                    {% endfor %}
-                </select></td>
-            </tr>
-            <tr>
-                <td><label for="religion">Religion:</label></td>
-                <td><select name="religion" id="religion" required>
-                    {% for religion in religions %}
-                        <option value="{{ religion.id }}">{{ religion.religion_name }}</option>
+                    <option>Select</option>
+                    {% for i in castes %}
+                        <option value="{{ i.id }}">{{ i.castesub_name }}</option>
                     {% endfor %}
                 </select></td>
             </tr>

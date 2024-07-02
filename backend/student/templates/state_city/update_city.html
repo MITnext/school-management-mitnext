@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update City</title>
+</head>
+<body>
+    <h1>Update City</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table border="2">
+            <tr>
+                <th>City Name:</th>
+                <td>{{ form.city_name }}</td>
+            </tr>
+            <tr>
+                <th>State:</th>
+                <td>{{ form.state }}</td>
+            </tr>
+            <tr>
+                <th>City Shortcut:</th>
+                <td>{{ form.city_shortcut }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="/search_city">Cancel</a>
+                    <button type="submit">Update</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -11,8 +11,7 @@ class Section_master(models.Model):
 
 class StdClass_master(models.Model):
     class_name = models.CharField(max_length=15)
-    section = models.ForeignKey(Section_master, on_delete=models.CASCADE, related_name='std_section')
-    teacher = models.CharField(max_length=10)
+    section = models.ForeignKey(Section_master, on_delete=models.CASCADE)
     description = models.TextField()
 
     def __str__(self):
@@ -60,11 +59,33 @@ class City_master(models.Model):
         return self.city_name
 
 
+class Tehsil_master(models.Model):
+    state = models.ForeignKey(State_master, on_delete=models.CASCADE)
+    tehsil_name = models.CharField(max_length=50)
+    description = models.TextField()
+
+
+class Nationality_master(models.Model):
+    castesub_name = models.CharField(max_length=50)
+    description = models.TextField()
+
+
+class motherTongue_master(models.Model):
+    castesub_name = models.CharField(max_length=50)
+    description = models.TextField()
+
+
+class SchoolBoard_master(models.Model):
+    board_name = models.CharField(max_length=50)
+    description = models.TextField()
+
+
 class StudentPersonalDetails(models.Model):
     std_id = models.CharField(max_length=10)
     std_first_name = models.CharField(max_length=100)
-    std_middle_name = models.CharField(max_length=100)
-    std_last_name = models.CharField(max_length=100)
+    father_name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+    mother_name = models.CharField(max_length=100)
     photo = models.FileField(upload_to='student_photos', null=True, blank=True)
     gender_choices_type = [
         ('Male', 'Male'),
@@ -94,13 +115,17 @@ class StudentPersonalDetails(models.Model):
     caste_main = models.ForeignKey(MainCaste_master, on_delete=models.CASCADE, related_name='caste_main')
     caste_sub = models.ForeignKey(SubCaste_master, on_delete=models.CASCADE, related_name='caste_sub')
     religion = models.ForeignKey(Religion_master, on_delete=models.CASCADE, related_name='religion')
+    nationality = models.ForeignKey(Nationality_master, on_delete=models.CASCADE)
+    domicile = models.CharField(max_length=100)
+    mother_tongue = models.ForeignKey(motherTongue_master, on_delete=models.CASCADE)
     ph_number_father = models.BigIntegerField()
     ph_number_mother = models.BigIntegerField()
     email = models.EmailField(null=True, blank=True)
     local_address = models.TextField()
     postal_address = models.TextField()
-    postal_city = models.CharField(max_length=100)
-    postal_state = models.CharField(max_length=50)
+    postal_city = models.ForeignKey(City_master, on_delete=models.CASCADE)
+    tehsil = models.ForeignKey(Tehsil_master, on_delete=models.CASCADE)
+    postal_state = models.ForeignKey(State_master, on_delete=models.CASCADE)
     postal_zip_code = models.IntegerField()
     father_occupation = models.CharField(max_length=50)
     mother_occupation = models.CharField(max_length=50)
@@ -110,12 +135,14 @@ class StudentPersonalDetails(models.Model):
 
 
 class PreviousSchoolDetails(models.Model):
-    student = models.ForeignKey(StudentPersonalDetails, on_delete=models.CASCADE, related_name='previous_schools')
+    student = models.ForeignKey(StudentPersonalDetails, on_delete=models.CASCADE)
+    school_board = models.ForeignKey(SchoolBoard_master, on_delete=models.CASCADE)
+    Udise_num = models.IntegerField()
     school_name = models.CharField(max_length=255)
-    school_board = models.CharField(max_length=255)
     school_address = models.TextField()
-    school_city = models.CharField(max_length=100)
-    school_state = models.CharField(max_length=100)
+    school_city = models.ForeignKey(City_master, on_delete=models.CASCADE)
+    tehsil = models.ForeignKey(Tehsil_master, on_delete=models.CASCADE)
+    school_state = models.ForeignKey(State_master, on_delete=models.CASCADE)
     school_zip_code = models.CharField(max_length=20)
     school_phone_number = models.CharField(max_length=20, null=True, blank=True)
     grade_attended = models.CharField(max_length=50)

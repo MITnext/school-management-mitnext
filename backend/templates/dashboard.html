@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMP MITNEXT</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #007BFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a, .dropdown .dropbtn {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: #0056b3;
+        }
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            z-index: 1;
+            top: 50px; /* Position the dropdown below the navbar */
+        }
+        .dropdown-content a {
+            float: none;
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .main-content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="#home">Home</a>
+    <div class="dropdown">
+        <button class="dropbtn">ORGANIZATION
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="organization_list">Organization list</a>
+            <a href="get_organization/<int:pk>">Get organization</a>
+            <a href="create_organization">Create organization</a>
+            <a href="update_organization/<int:pk>">Update organization</a>
+            <a href="delete_organization/<int:pk>">Delete organization</a>
+            <a href="add_organization">Add organization</a>
+            <a href="list_organizations">List organization</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">EMPLOYEE
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="add_employee/">Add Employee</a>
+            <a href="list_employees">List Employee</a>
+            <a href=""></a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">STUDENT
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="sections_create">sections_create</a>
+            <a href="class_create">class_create</a>
+            <a href="religions_create">religions_create</a>
+            <a href="casteMain_create">casteMain_create</a>
+            <a href="casteSub_create">casteSub_create</a>
+            <a href="state_create">state_create</a>
+            <a href="city_create">city_create</a>
+            <a href="student_create">student_create</a>
+            <a href="previous_school_create">previous_school_create</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">LIST
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="section_list">section_list</a>
+            <a href="std_class_list">std_class_list</a>
+            <a href="religion_list">religion_list</a>
+            <a href="casteMain_list">casteMain_list</a>
+            <a href="casteSub_list">casteSub_list</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">SEARCH-UPDATE
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="search_state">search_state</a>
+            <a href="search_city">search_city</a>
+            <a href="student_search">student_search</a>
+            <a href="previous_school_search">previous_school_search</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">FEEs
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="upload/">Upload</a>
+            <a href="slips/"> slips</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">EXAM
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="add_subject">Add Subject</a>
+            <a href="search_subject">Search Subject</a>
+            <a href="add_question">Add Question</a>
+            <a href="search_question_bank">Search Question</a>
+            <a href="create_paper">Generate Paper</a>
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+    <h1>Welcome <br> STUDENT MANAGEMENT SYSTEM <br>MITNEXT PVT.LTD</h1>
+    <p><b>DASHBOARD</b></p>
+</div>
+
+</body>
+</html>

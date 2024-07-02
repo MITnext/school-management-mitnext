@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Sub Castes</title>
+</head>
+<body>
+    <h1>Search Sub Castes</h1>
+    <table border="1">
+        <tr>
+            <th>Sub Caste Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for subcaste in subcastes %}
+        <tr>
+            <td>{{ subcaste.castesub_name }}</td>
+            <td>{{ subcaste.description }}</td>
+            <td>
+                <a href="/update_subcaste/{{ subcaste.id }}">Update</a>
+                <a href="/delete_subcaste/{{ subcaste.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

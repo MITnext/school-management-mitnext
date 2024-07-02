@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Nationalities</title>
+</head>
+<body>
+    <h1>Search Nationalities</h1>
+    <table border="1">
+        <tr>
+            <th>Nationality Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for nationality in nationalities %}
+        <tr>
+            <td>{{ nationality.castesub_name }}</td>
+            <td>{{ nationality.description }}</td>
+            <td>
+                <a href="/update_nationality/{{ nationality.id }}">Update</a>
+                <a href="/delete_nationality/{{ nationality.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

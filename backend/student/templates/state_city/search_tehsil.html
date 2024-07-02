@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Tehsils</title>
+</head>
+<body>
+    <h1>Search Tehsils</h1>
+    <table border="1">
+        <tr>
+            <th>Tehsil Name</th>
+            <th>State</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for tehsil in tehsils %}
+        <tr>
+            <td>{{ tehsil.tehsil_name }}</td>
+            <td>{{ tehsil.state.state_name }}</td>
+            <td>{{ tehsil.description }}</td>
+            <td>
+                <a href="/update_tehsil/{{ tehsil.id }}">Update</a>
+                <a href="/delete_tehsil/{{ tehsil.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

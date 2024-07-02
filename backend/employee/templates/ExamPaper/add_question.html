@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Form</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="questionForm" method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table border="2">
+            <tr>
+                <td>
+                    <label for="questionType">Select Question Type:</label>
+                </td>
+                <td>
+                    <select name="question_type" id="questionType" onchange="showFields()">
+                        <option value="">Select</option>
+                        <option value="MCQ">MCQ</option>
+                        <option value="Subjective">Subjective</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr id="subjectRow" class="hidden">
+                <td>
+                    <label for="subject">Select Subject:</label>
+                </td>
+                <td align="center">
+                    <select name="subject" id="subject" style="width:97%">
+                        <option></option>
+                        {% for i in sub %}
+                        <option value="{{i.id}}">{{i.subjectname}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+
+            <tr id="questionRow" class="hidden">
+                <td>
+                    <label >Question:</label>
+                </td>
+                <td>
+                    <textarea name="question" rows="4" cols="35"></textarea>
+
+                </td>
+            </tr>
+
+            <tr id="diagramRow" class="hidden">
+                <td>
+                    <label>Upload a Diagram:</label>
+                </td>
+
+                <td>
+                    <input type="file" name="image">
+                </td>
+            </tr>
+
+            <!-- MCQ Fields -->
+            <tr id="mcqFieldsRow" class="hidden">
+                <td>
+                    <label for="option1">Option 1:</label>
+                </td>
+                <td>
+                    <input type="text" name="option1" id="option1">
+                </td>
+            </tr>
+
+            <tr id="mcqFieldsRow2" class="hidden">
+                <td>
+                    <label for="option2" >Option 2:</label>
+                </td>
+                <td>
+                    <input type="text" name="option2" id="option2">
+                </td>
+            </tr>
+
+            <tr id="mcqFieldsRow3" class="hidden">
+                <td>
+                    <label for="option3">Option 3:</label>
+                </td>
+                <td>
+                    <input type="text" name="option3" id="option3">
+                </td>
+            </tr>
+
+            <tr id="mcqFieldsRow4" class="hidden">
+                <td>
+                    <label for="option4">Option 4:</label>
+                </td>
+                <td>
+                    <input type="text" name="option4" id="option4">
+                </td>
+            </tr>
+
+            <tr id="mcqFieldsRow5" class="hidden">
+                <td>
+                    <label for="option_choices">correct option:</label>
+                </td>
+                <td>
+                    <select name="option_choices" id="option_choices" class="form-control" style="width:97%">
+                          <option value="">Select</option>
+                          <option value="option1">Option1</option>
+                          <option value="option2">Option2</option>
+                          <option value="option3">Option3</option>
+                          <option value="option4">Option4</option>
+                    </select>
+                </td>
+            </tr>
+
+            <!-- Subjective Fields -->
+<!--            <tr id="subjectiveFieldsRow" class="hidden">-->
+<!--                <td>-->
+<!--                    <label>Upload a Diagram:</label>-->
+<!--                </td>-->
+
+<!--                <td>-->
+<!--                    <input type="file" name="image">-->
+<!--                </td>-->
+<!--            </tr>-->
+
+            <tr id="subjectiveFieldsRow2" class="hidden">
+                <td>
+                    <label for="solution-subjective">Solution:</label>
+                </td>
+
+                <td>
+                    <textarea name="solution" id="solution-subjective" rows="4" cols="35"></textarea>
+
+                </td>
+            </tr>
+
+            <tr id="subjectiveFieldsRow3" class="hidden">
+                <td>
+                    <label for="question_weightage">weightage:</label>
+                </td>
+                <td>
+                    <select name="question_weightage" id="question_weightage" class="form-control">
+                      <option value="" >Select</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr id="submitRow" class="hidden">
+                <td colspan="2" align="center">
+                    <input type="submit" value="Submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function showFields() {
+            var selectedOption = document.getElementById("questionType").value;
+            var subjectRow = document.getElementById("subjectRow");
+            var questionRow = document.getElementById("questionRow");
+            var diagramRow = document.getElementById("diagramRow");
+
+            var mcqFieldsRow = document.getElementById("mcqFieldsRow");
+            var mcqFieldsRow2 = document.getElementById("mcqFieldsRow2");
+            var mcqFieldsRow3 = document.getElementById("mcqFieldsRow3");
+            var mcqFieldsRow4 = document.getElementById("mcqFieldsRow4");
+            var mcqFieldsRow5 = document.getElementById("mcqFieldsRow5");
+<!--            var subjectiveFieldsRow = document.getElementById("subjectiveFieldsRow");-->
+            var subjectiveFieldsRow2 = document.getElementById("subjectiveFieldsRow2");
+            var subjectiveFieldsRow3 = document.getElementById("subjectiveFieldsRow3");
+            var submitRow = document.getElementById("submitRow");
+
+            subjectRow.classList.add("hidden");
+            questionRow.classList.add("hidden");
+            diagramRow.classList.add("hidden");
+            mcqFieldsRow.classList.add("hidden");
+            mcqFieldsRow2.classList.add("hidden");
+            mcqFieldsRow3.classList.add("hidden");
+            mcqFieldsRow4.classList.add("hidden");
+            mcqFieldsRow5.classList.add("hidden");
+<!--            subjectiveFieldsRow.classList.add("hidden");-->
+            subjectiveFieldsRow2.classList.add("hidden");
+            subjectiveFieldsRow3.classList.add("hidden");
+            submitRow.classList.add("hidden");
+
+            if (selectedOption === "MCQ" || selectedOption === "Subjective") {
+                subjectRow.classList.remove("hidden");
+                questionRow.classList.remove("hidden");
+                diagramRow.classList.remove("hidden");
+                submitRow.classList.remove("hidden");
+            }
+
+            if (selectedOption === "MCQ") {
+                mcqFieldsRow.classList.remove("hidden");
+                mcqFieldsRow2.classList.remove("hidden");
+                mcqFieldsRow3.classList.remove("hidden");
+                mcqFieldsRow4.classList.remove("hidden");
+                mcqFieldsRow5.classList.remove("hidden");
+            } else if (selectedOption === "Subjective") {
+<!--                subjectiveFieldsRow.classList.remove("hidden");-->
+                subjectiveFieldsRow2.classList.remove("hidden");
+                subjectiveFieldsRow3.classList.remove("hidden");
+            }
+        }
+    </script>
+
+</body>
+</html>

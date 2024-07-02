@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Subject</title>
+</head>
+<body>
+    <form method="POST" action="" >
+        {%csrf_token%}
+        <table border="2">
+            <tr>
+                <th colspan="3">Add subject</th>
+            </tr>
+            <tr>
+                <td>
+                    <label>Subject name</label>
+                </td>
+                <td>
+                    <input type="text" name="subjectname">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Description</label>
+                </td>
+                <td>
+                    <input type="text" name="description">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" id="btnsubmit" value="save">
+                    <input type="submit" name="btncancel" id="btncancel" value="Cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

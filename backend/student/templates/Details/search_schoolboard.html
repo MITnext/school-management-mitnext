@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search School Boards</title>
+</head>
+<body>
+    <h1>Search School Boards</h1>
+    <table border="1">
+        <tr>
+            <th>Board Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for schoolboard in schoolboards %}
+        <tr>
+            <td>{{ schoolboard.board_name }}</td>
+            <td>{{ schoolboard.description }}</td>
+            <td>
+                <a href="/update_schoolboard/{{ schoolboard.id }}">Update</a>
+                <a href="/delete_schoolboard/{{ schoolboard.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Religions</title>
+</head>
+<body>
+    <h1>Search Religions</h1>
+    <table border="1">
+        <tr>
+            <th>Religion Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for religion in religions %}
+        <tr>
+            <td>{{ religion.religion_name }}</td>
+            <td>{{ religion.description }}</td>
+            <td>
+                <a href="/update_religion/{{ religion.id }}">Update</a>
+                <a href="/delete_religion/{{ religion.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

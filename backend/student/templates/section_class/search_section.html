@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Sections</title>
+</head>
+<body>
+    <h1>Search Sections</h1>
+    <table border="1">
+        <tr>
+            <th>Section Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for section in sections %}
+        <tr>
+            <td>{{ section.sec_name }}</td>
+            <td>{{ section.description }}</td>
+            <td>
+                <a href="/update_section/{{ section.id }}">Update</a>
+                <a href="/delete_section/{{ section.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -45,6 +45,30 @@ class CityForm(forms.ModelForm):
         fields = '__all__'
 
 
+class TehsilMasterForm(forms.ModelForm):
+    class Meta:
+        model = Tehsil_master
+        fields = '__all__'
+
+
+class NationalityMasterForm(forms.ModelForm):
+    class Meta:
+        model = Nationality_master
+        fields = '__all__'
+
+
+class MotherTongueMasterForm(forms.ModelForm):
+    class Meta:
+        model = motherTongue_master
+        fields = '__all__'
+
+
+class SchoolBoardMasterForm(forms.ModelForm):
+    class Meta:
+        model = SchoolBoard_master
+        fields = '__all__'
+
+
 class StudentPersonalDetailsForm(forms.ModelForm):
     class Meta:
         model = StudentPersonalDetails

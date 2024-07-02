@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search States</title>
+</head>
+<body>
+    <h1>Search States</h1>
+    <table border="1">
+        <tr>
+            <th>State Name</th>
+            <th>State Shortcut</th>
+            <th>Actions</th>
+        </tr>
+        {% for state in states %}
+        <tr>
+            <td>{{ state.state_name }}</td>
+            <td>{{ state.state_shortcut }}</td>
+            <td>
+                <a href="/update_state/{{ state.id }}">Update</a>
+                <a href="/delete_state/{{ state.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

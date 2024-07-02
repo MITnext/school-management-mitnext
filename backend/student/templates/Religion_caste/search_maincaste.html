@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Main Castes</title>
+</head>
+<body>
+    <h1>Search Main Castes</h1>
+    <table border="1">
+        <tr>
+            <th>Main Caste Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for maincaste in maincastes %}
+        <tr>
+            <td>{{ maincaste.maincaste_name }}</td>
+            <td>{{ maincaste.description }}</td>
+            <td>
+                <a href="/update_maincaste/{{ maincaste.id }}">Update</a>
+                <a href="/delete_maincaste/{{ maincaste.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

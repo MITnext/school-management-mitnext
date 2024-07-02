@@ -1,0 +1,40 @@
+ 
+{% block content %}
+
+<table border="1">
+    <tr>
+        <th>question_type</th>
+        <th>subject</th>
+        <th>Question</th>
+        <th>Diagram</th>
+        <th>option1</th>
+        <th>option2</th>
+        <th>option3</th>
+        <th>option4</th>
+        <th>solution</th>
+        <th>option_choices</th>
+        <th>question_weightage</th>
+        <th>update</th>
+    </tr>
+    {%for i in quesbm %}
+    <tr>
+        <td>{{i.question_type}}</td>
+        <td>{{i.subject}}</td>
+        <td>{{i.question}}</td>
+        <td>{% if i.image %}
+                    <img src="media/{{ i.image }}" width="100" height="100" />
+                {% endif %}</td>
+        <td>{{i.option1}}</td>
+        <td>{{i.option2}}</td>
+        <td>{{i.option3}}</td>
+        <td>{{i.option4}}</td>
+        <td>{{i.solution}}</td>
+        <td>{{i.option_choices}}</td>
+        <td>{{i.question_weightage}}</td>
+        <td> <a href="/update_question_bank/<int:id>"> update</a>
+            <a href="/delete_question_bank/<int:id>"> delete</a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
