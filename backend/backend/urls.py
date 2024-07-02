@@ -21,11 +21,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import render
 
+
+def landing_page_view(request):
+    return render(request, 'dashboard.html')
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('student', include('student.urls')),
-    path('organization', include('organization.urls')),
-    path('employee', include('employee.urls')),
+    path('', landing_page_view, name='landing_page'),
+    path('', include('student.urls')),
+    path('', include('organization.urls')),
+    path('', include('employee.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

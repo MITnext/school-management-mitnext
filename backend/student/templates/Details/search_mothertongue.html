@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Mother Tongues</title>
+</head>
+<body>
+    <h1>Search Mother Tongues</h1>
+    <table border="1">
+        <tr>
+            <th>Mother Tongue Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for mothertongue in mothertongues %}
+        <tr>
+            <td>{{ mothertongue.castesub_name }}</td>
+            <td>{{ mothertongue.description }}</td>
+            <td>
+                <a href="/update_mothertongue/{{ mothertongue.id }}">Update</a>
+                <a href="/delete_mothertongue/{{ mothertongue.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Classes</title>
+</head>
+<body>
+    <h1>Search Classes</h1>
+    <table border="1">
+        <tr>
+            <th>Class Name</th>
+            <th>Section</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for stdclass in stdclasses %}
+        <tr>
+            <td>{{ stdclass.class_name }}</td>
+            <td>{{ stdclass.section.sec_name }}</td>
+            <td>{{ stdclass.description }}</td>
+            <td>
+                <a href="/update_stdclass/{{ stdclass.id }}">Update</a>
+                <a href="/delete_stdclass/{{ stdclass.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Questions</title>
+</head>
+<body>
+
+    <form method="post">
+        {% csrf_token %}
+        <table border="2">
+            <tr>
+                <th colspan="2"><h1>Download Questions</h1></th>
+            </tr>
+            <tr>
+                <td>
+                    <label for="question_type">Select Question Type:</label>
+                </td>
+                <td>
+                    <select name="question_type">
+                        <option value="MCQ">Multiple Choice Question</option>
+                        <option value="Subjective">Subjective Question</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="subject">Select Subject:</label>
+                </td>
+                <td>
+                    <select name="subject">
+                        {% for subject in subject_list %}
+                            <option value="{{ subject.id }}">{{ subject.subjectname }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="num_questions">Number of Questions to Download:</label>
+                </td>
+                <td>
+                    <input type="number" name="num_questions" value="10" min="1" max="100">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Download"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Downloaded Questions</title>
+</head>
+<body>
+    <h1 align="center">Downloaded Questions</h1>
+
+    {% with first_question=questions.0 %}
+        <p><b>Subject: {{ first_question.subject }}</b></p>
+        <p><b>Type: {{ first_question.question_type }}</b></p>
+        {% endwith %}
+    <hr>
+    {% for question in questions %}
+    <div class="question">
+        <h3>{{ forloop.counter }}. {{ question.question }}</h3>
+
+        {% if question.question_type == 'MCQ' %}
+
+            <ul class="options">
+                <li>Option 1: {{ question.option1 }}</li>
+                <li>Option 2: {{ question.option2 }}</li>
+                <li>Option 3: {{ question.option3 }}</li>
+                <li>Option 4: {{ question.option4 }}</li>
+            </ul>
+            <p>Correct Option: {{ question.option_choices }}</p>
+        {% elif question.question_type == 'Subjective' %}
+
+        {% if question.image %}
+            <img src="media/{{ question.image }}" height="100px">
+        {% endif %}
+
+        {% if question.solution %}
+            <p>Solution: {{ question.solution }}</p>
+        {% endif %}
+
+            <p>Question Weightage: {{ question.question_weightage }}</p>
+        {% endif %}
+    </div>
+    <hr>
+    {% endfor %}
+
+</body>
+</html>

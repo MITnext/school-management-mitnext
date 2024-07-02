@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Cities</title>
+</head>
+<body>
+    <h1>Search Cities</h1>
+    <table border="1">
+        <tr>
+            <th>City Name</th>
+            <th>State</th>
+            <th>City Shortcut</th>
+            <th>Actions</th>
+        </tr>
+        {% for city in cities %}
+        <tr>
+            <td>{{ city.city_name }}</td>
+            <td>{{ city.state.state_name }}</td>
+            <td>{{ city.city_shortcut }}</td>
+            <td>
+                <a href="/update_city/{{ city.id }}">Update</a>
+                <a href="/delete_city/{{ city.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

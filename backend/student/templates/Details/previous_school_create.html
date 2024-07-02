@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Previous School Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Previous School Details Form</h1>
@@ -12,8 +14,8 @@
             <tr>
                 <td><label for="student">Student:</label></td>
                 <td><select name="student" id="student" required>
-                    {% for student in students %}
-                        <option value="{{ student.id }}">{{ student.std_first_name }}</option>
+                    {% for i in stdname %}
+                <option value="{{ i.id }}">{{ i.std_first_name }} {{ i.father_name }} {{ i.surname }}</option>
                     {% endfor %}
                 </select></td>
             </tr>

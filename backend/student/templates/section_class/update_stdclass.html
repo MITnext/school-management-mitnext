@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Class</title>
+</head>
+<body>
+    <h1>Update Class</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table border="2">
+            <tr>
+                <th>Class Name:</th>
+                <td>{{ form.class_name }}</td>
+            </tr>
+            <tr>
+                <th>Section:</th>
+                <td>{{ form.section }}</td>
+            </tr>
+            <tr>
+                <th>Description:</th>
+                <td>{{ form.description }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="/search_stdclass">Cancel</a>
+                    <button type="submit">Update</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

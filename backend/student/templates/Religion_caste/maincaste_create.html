@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>MainCaste Master</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>MainCaste Master Form</h1>
@@ -19,7 +21,7 @@
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Submit">
-                    <a href="{% url 'caste_list' %}">Cancel</a>
+                    <a href="{% url 'casteMain_list' %}">Cancel</a>
                 </td>
             </tr>
         </table>

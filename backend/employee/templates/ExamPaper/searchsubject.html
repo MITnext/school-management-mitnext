@@ -1,0 +1,20 @@
+ 
+{% block content %}
+
+<table border="1">
+    <tr>
+        <th>Subjectname</th>
+        <th>Description</th>
+        <th>update</th>
+    </tr>
+    {%for i in subm %}
+    <tr>
+        <td>{{i.subjectname}}</td>
+        <td>{{i.description}}</td>
+        <td> <a href="/update_subject/{{i.id}}"> update</a>
+            <a href="/delete_subject/{{i.id}}"> delete</a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

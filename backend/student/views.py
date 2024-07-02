@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from rest_framework.response import Response
 
-""" Section_Views """
+""" Section Views """
 
 
 def section_create(request):
@@ -24,34 +24,34 @@ def section_create(request):
     return render(request, 'section_class/section_create.html', {'form': form})
 
 
-def section_list(request):
+def search_section(request):
     sections = Section_master.objects.all()
-    return render(request, 'section_class/section_list.html', {'sections': sections})
+    return render(request, "section_class/search_section.html", {'sections': sections})
 
 
-def section_detail(request, pk):
-    section = get_object_or_404(Section_master, pk=pk)
-    return render(request, 'section_class/section_detail.html', {'section': section})
+def update_section(request, id):
+    section = get_object_or_404(Section_master, id=id)
+    form = SectionForm(instance=section)
 
-
-def section_update(request, pk):
-    section = get_object_or_404(Section_master, pk=pk)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SectionForm(request.POST, instance=section)
         if form.is_valid():
-            form.save()
-            return redirect('section_list')
-    else:
-        form = SectionForm(instance=section)
-    return render(request, 'section_class/section_update.html', {'form': form})
+            try:
+                form.save()
+                return redirect('/search_section')
+            except Exception as e:
+                pass
+
+    return render(request, 'section_class/update_section.html', {'form': form})
 
 
-def section_delete(request, pk):
-    section = get_object_or_404(Section_master, pk=pk)
-    if request.method == 'POST':
+def delete_section(request, id):
+    section = get_object_or_404(Section_master, id=id)
+    try:
         section.delete()
-        return redirect('section_list')
-    return render(request, 'section_class/section_delete.html', {'section': section})
+    except Exception as e:
+        pass
+    return redirect('/search_section')
 
 
 """ Section_apis """
@@ -112,44 +112,47 @@ def section_delete_api(request, pk):
 
 
 def std_class_create(request):
-    if request.method == 'POST':
-        form = StdClassForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('std_class_list')
-    else:
-        form = StdClassForm()
-    return render(request, 'section_class/std_class_create.html', {'form': form})
-
-
-def std_class_list(request):
-    classes = StdClass_master.objects.all()
-    return render(request, 'section_class/std_class_list.html', {'classes': classes})
-
-
-def std_class_detail(request, pk):
-    std_class = get_object_or_404(StdClass_master, pk=pk)
-    return render(request, 'section_class/std_class_detail.html', {'std_class': std_class})
-
-
-def std_class_update(request, pk):
-    std_class = get_object_or_404(StdClass_master, pk=pk)
-    if request.method == 'POST':
-        form = StdClassForm(request.POST, instance=std_class)
-        if form.is_valid():
-            form.save()
-            return redirect('std_class_list')
-    else:
-        form = StdClassForm(instance=std_class)
-    return render(request, 'section_class/std_class_update.html', {'form': form})
-
-
-def std_class_delete(request, pk):
-    std_class = get_object_or_404(StdClass_master, pk=pk)
-    if request.method == 'POST':
-        std_class.delete()
+    context = {}
+    sections = Section_master.objects.all()
+    stdclass = StdClassForm(request.POST)
+    if stdclass.is_valid():
+        stdclass.save()
         return redirect('std_class_list')
-    return render(request, 'section_class/std_class_delete.html', {'std_class': std_class})
+    else:
+        context['form'] = stdclass
+
+    context["sections"] = sections
+    return render(request, "section_class/std_class_create.html", context)
+
+
+def search_stdclass(request):
+    stdclasses = StdClass_master.objects.all()
+    return render(request, "section_class/search_stdclass.html", {'stdclasses': stdclasses})
+
+
+def update_stdclass(request, id):
+    stdclass = get_object_or_404(StdClass_master, id=id)
+    form = StdClassForm(instance=stdclass)
+
+    if request.method == "POST":
+        form = StdClassForm(request.POST, instance=stdclass)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/search_stdclass')
+            except Exception as e:
+                pass
+
+    return render(request, 'section_class/update_stdclass.html', {'form': form})
+
+
+def delete_stdclass(request, id):
+    stdclass = get_object_or_404(StdClass_master, id=id)
+    try:
+        stdclass.delete()
+    except Exception as e:
+        pass
+    return redirect('/search_stdclass')
 
 
 """StdClass APIs"""
@@ -220,34 +223,34 @@ def religion_create(request):
     return render(request, 'Religion_caste/religion_create.html', {'form': form})
 
 
-def religion_list(request):
+def search_religion(request):
     religions = Religion_master.objects.all()
-    return render(request, 'Religion_caste/religion_list.html', {'religions': religions})
+    return render(request, "Religion_caste/search_religion.html", {'religions': religions})
 
 
-def religion_detail(request, pk):
-    religion = get_object_or_404(Religion_master, pk=pk)
-    return render(request, 'Religion_caste/religion_detail.html', {'religion': religion})
+def update_religion(request, id):
+    religion = get_object_or_404(Religion_master, id=id)
+    form = ReligionForm(instance=religion)
 
-
-def religion_update(request, pk):
-    religion = get_object_or_404(Religion_master, pk=pk)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ReligionForm(request.POST, instance=religion)
         if form.is_valid():
-            form.save()
-            return redirect('religion_list')
-    else:
-        form = ReligionForm(instance=religion)
-    return render(request, 'Religion_caste/religion_form.html', {'form': form})
+            try:
+                form.save()
+                return redirect('/search_religion')
+            except Exception as e:
+                pass
+
+    return render(request, 'Religion_caste/update_religion.html', {'form': form})
 
 
-def religion_delete(request, pk):
-    religion = get_object_or_404(Religion_master, pk=pk)
-    if request.method == 'POST':
+def delete_religion(request, id):
+    religion = get_object_or_404(Religion_master, id=id)
+    try:
         religion.delete()
-        return redirect('religion_list')
-    return render(request, 'Religion_caste/religion_delete.html', {'religion': religion})
+    except Exception as e:
+        pass
+    return redirect('/search_religion')
 
 
 """ Religion APIs """
@@ -318,34 +321,34 @@ def maincaste_create(request):
     return render(request, 'Religion_caste/maincaste_create.html', {'form': form})
 
 
-def maincaste_list(request):
-    castes = MainCaste_master.objects.all()
-    return render(request, 'Religion_caste/maincaste_list.html', {'castes': castes})
+def search_maincaste(request):
+    maincastes = MainCaste_master.objects.all()
+    return render(request, "Religion_caste/search_maincaste.html", {'maincastes': maincastes})
 
 
-def maincaste_detail(request, pk):
-    caste = get_object_or_404(MainCaste_master, pk=pk)
-    return render(request, 'Religion_caste/maincaste_detail.html', {'caste': caste})
+def update_maincaste(request, id):
+    maincaste = get_object_or_404(MainCaste_master, id=id)
+    form = MainCasteForm(instance=maincaste)
 
-
-def maincaste_update(request, pk):
-    caste = get_object_or_404(MainCaste_master, pk=pk)
-    if request.method == 'POST':
-        form = MainCasteForm(request.POST, instance=caste)
+    if request.method == "POST":
+        form = MainCasteForm(request.POST, instance=maincaste)
         if form.is_valid():
-            form.save()
-            return redirect('casteMain_list')
-    else:
-        form = MainCasteForm(instance=caste)
-    return render(request, 'Religion_caste/maincaste_form.html', {'form': form})
+            try:
+                form.save()
+                return redirect('/search_maincaste')
+            except Exception as e:
+                pass
+
+    return render(request, 'Religion_caste/update_maincaste.html', {'form': form})
 
 
-def maincaste_delete(request, pk):
-    caste = get_object_or_404(MainCaste_master, pk=pk)
-    if request.method == 'POST':
-        caste.delete()
-        return redirect('casteMain_list')
-    return render(request, 'Religion_caste/maincaste_delete.html', {'caste': caste})
+def delete_maincaste(request, id):
+    maincaste = get_object_or_404(MainCaste_master, id=id)
+    try:
+        maincaste.delete()
+    except Exception as e:
+        pass
+    return redirect('/search_maincaste')
 
 
 """ Main_caste APIs """
@@ -416,34 +419,34 @@ def subcaste_create(request):
     return render(request, 'Religion_caste/subcaste_create.html', {'form': form})
 
 
-def subcaste_list(request):
-    castes = SubCaste_master.objects.all()
-    return render(request, 'Religion_caste/subcaste_list.html', {'castes': castes})
+def search_subcaste(request):
+    subcastes = SubCaste_master.objects.all()
+    return render(request, "Religion_caste/search_subcaste.html", {'subcastes': subcastes})
 
 
-def subcaste_detail(request, pk):
-    caste = get_object_or_404(SubCaste_master, pk=pk)
-    return render(request, 'Religion_caste/subcaste_detail.html', {'caste': caste})
+def update_subcaste(request, id):
+    subcaste = get_object_or_404(SubCaste_master, id=id)
+    form = SubCasteForm(instance=subcaste)
 
-
-def subcaste_update(request, pk):
-    caste = get_object_or_404(SubCaste_master, pk=pk)
-    if request.method == 'POST':
-        form = SubCasteForm(request.POST, instance=caste)
+    if request.method == "POST":
+        form = SubCasteForm(request.POST, instance=subcaste)
         if form.is_valid():
-            form.save()
-            return redirect('casteSub_list')
-    else:
-        form = SubCasteForm(instance=caste)
-    return render(request, 'Religion_caste/subcaste_form.html', {'form': form})
+            try:
+                form.save()
+                return redirect('/search_subcaste')
+            except Exception as e:
+                pass
+
+    return render(request, 'Religion_caste/update_subcaste.html', {'form': form})
 
 
-def subcaste_delete(request, pk):
-    caste = get_object_or_404(SubCaste_master, pk=pk)
-    if request.method == 'POST':
-        caste.delete()
-        return redirect('casteSub_list')
-    return render(request, 'Religion_caste/subcaste_delete.html', {'caste': caste})
+def delete_subcaste(request, id):
+    subcaste = get_object_or_404(SubCaste_master, id=id)
+    try:
+        subcaste.delete()
+    except Exception as e:
+        pass
+    return redirect('/search_subcaste')
 
 
 """ Sub Caste APIs """
@@ -592,18 +595,16 @@ def state_delete_api(request, pk):
 
 def city_create(request):
     context = {}
-    statenames = State_master.objects.all()
-    employee = CityForm(request.POST or None)
-    if employee.is_valid():
-        print("HELOO______________________________________________________")
-        employee.save()
+    states = State_master.objects.all()
+    cities = CityForm(request.POST or None)
+    if cities.is_valid():
+        cities.save()
+        return HttpResponse('added')
     else:
-        print("HELOO______________________________________________________111")
-        print(request.POST)
-        messages.error(request, employee.errors)
-        context['form'] = employee
+        messages.error(request, cities.errors)
+        context['form'] = cities
 
-    context["statenames"] = statenames
+    context["states"] = states
     return render(request, "state_city/city_create.html", context)
 
 
@@ -681,77 +682,208 @@ def city_delete_api(request, pk):
 """# ****************************************************************************************************************************************************
 # ****************************************************************************************************************************************************  """
 
+""" Tehsil views """
+
+
+def search_tehsil(request):
+    tehsils = Tehsil_master.objects.all()
+    return render(request, "state_city/search_tehsil.html", {'tehsils': tehsils})
+
+
+def update_tehsil(request, id):
+    tehsil = get_object_or_404(Tehsil_master, id=id)
+    form = TehsilMasterForm(instance=tehsil)
+
+    if request.method == "POST":
+        form = TehsilMasterForm(request.POST, instance=tehsil)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/search_tehsil')
+            except Exception as e:
+                pass
+
+    return render(request, 'state_city/update_tehsil.html', {'form': form})
+
+
+def delete_tehsil(request, id):
+    tehsil = get_object_or_404(Tehsil_master, id=id)
+    try:
+        tehsil.delete()
+    except Exception as e:
+        pass
+    return redirect('/search_tehsil')
+
+
+"""# ****************************************************************************************************************************************************
+# ****************************************************************************************************************************************************  """
+
+""" Nationality views """
+
+
+def search_nationality(request):
+    nationalities = Nationality_master.objects.all()
+    return render(request, "Religion_caste/search_nationality.html", {'nationalities': nationalities})
+
+
+def update_nationality(request, id):
+    nationality = get_object_or_404(Nationality_master, id=id)
+    form = NationalityMasterForm(instance=nationality)
+
+    if request.method == "POST":
+        form = NationalityMasterForm(request.POST, instance=nationality)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/search_nationality')
+            except Exception as e:
+                pass
+
+    return render(request, 'Religion_caste/update_nationality.html', {'form': form})
+
+
+def delete_nationality(request, id):
+    nationality = get_object_or_404(Nationality_master, id=id)
+    try:
+        nationality.delete()
+    except Exception as e:
+        pass
+    return redirect('/search_nationality')
+
+
+"""# ****************************************************************************************************************************************************
+# ****************************************************************************************************************************************************  """
+
+""" Mother Tongue views """
+
+
+def search_mothertongue(request):
+    mothertongues = motherTongue_master.objects.all()
+    return render(request, "Details/search_mothertongue.html", {'mothertongues': mothertongues})
+
+
+def update_mothertongue(request, id):
+    mothertongue = get_object_or_404(motherTongue_master, id=id)
+    form = MotherTongueMasterForm(instance=mothertongue)
+
+    if request.method == "POST":
+        form = MotherTongueMasterForm(request.POST, instance=mothertongue)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/search_mothertongue')
+            except Exception as e:
+                pass
+
+    return render(request, 'Details/update_mothertongue.html', {'form': form})
+
+
+def delete_mothertongue(request, id):
+    mothertongue = get_object_or_404(motherTongue_master, id=id)
+    try:
+        mothertongue.delete()
+    except Exception as e:
+        pass
+    return redirect('/search_mothertongue')
+
+
+"""# ****************************************************************************************************************************************************
+# ****************************************************************************************************************************************************  """
+
+""" School Board views """
+
+
+def search_schoolboard(request):
+    schoolboards = SchoolBoard_master.objects.all()
+    return render(request, "Details/search_schoolboard.html", {'schoolboards': schoolboards})
+
+
+def update_schoolboard(request, id):
+    schoolboard = get_object_or_404(SchoolBoard_master, id=id)
+    form = SchoolBoardMasterForm(instance=schoolboard)
+
+    if request.method == "POST":
+        form = SchoolBoardMasterForm(request.POST, instance=schoolboard)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/search_schoolboard')
+            except Exception as e:
+                pass
+
+    return render(request, 'Details/update_schoolboard.html', {'form': form})
+
+
+def delete_schoolboard(request, id):
+    schoolboard = get_object_or_404(SchoolBoard_master, id=id)
+    try:
+        schoolboard.delete()
+    except Exception as e:
+        pass
+    return redirect('/search_schoolboard')
+
+
+"""# ****************************************************************************************************************************************************
+# ****************************************************************************************************************************************************  """
+
 """ student views """
 
 
 def student_create(request):
-    if request.method == 'POST':
-        form = StudentPersonalDetailsForm(request.POST)
-        print(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('added successfully')
+    context = {}
+    stdclass = StdClass_master.objects.all()
+    sections = Section_master.objects.all()
+    castem = MainCaste_master.objects.all()
+    castes = SubCaste_master.objects.all()
+    religions = Religion_master.objects.all()
+    form = StudentPersonalDetailsForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return HttpResponse('added successfully')
     else:
-        form = StudentPersonalDetailsForm()
-        messages.error(request, form.errors)
-        print(form)
-        print(form.is_valid())
-    return render(request, 'Details/student_create.html', {'form': form})
+        context['form'] = form
+    context['stdclass'] = stdclass
+    context['sections'] = sections
+    context['castem'] = castem
+    context['castes'] = castes
+    context['religions'] = religions
+    return render(request, 'Details/student_create.html', context)
 
 
-def student_search(request):
-    sal = StudentPersonalDetails.objects.all()
-    return render(request, "Details/student_search.html", {'subm': sal})
+def search_student(request):
+    students = StudentPersonalDetails.objects.all()
+    return render(request, "search_student.html", {'students': students})
 
 
-def student_update(request, std_id):
-    branch = get_object_or_404(StudentPersonalDetails, std_id=std_id)
-    form = StudentPersonalDetailsForm(instance=branch)
+def update_student(request, id):
+    student = get_object_or_404(StudentPersonalDetails, id=id)
+    form = StudentPersonalDetailsForm(instance=student)
+
     if request.method == "POST":
-        form = StudentPersonalDetailsForm(request.POST, request.FILES, instance=branch)
+        form = StudentPersonalDetailsForm(request.POST, instance=student)
         if form.is_valid():
-            form.save()
-            return redirect('/student_search')
-    return render(request, 'Details/student_update.html', {'form': form})
+            try:
+                form.save()
+                return redirect('/search_student')
+            except Exception as e:
+                pass
+
+    return render(request, 'update_student.html', {'form': form})
 
 
-# def student_update(request, student_id):
-#     branch = StudentPersonalDetails.objects.get(student_id=student_id)
-#     form = StudentPersonalDetailsForm(initial={'statename': branch.statename, 'studenthortcut': branch.studenthortcut, })
-#     if request.method == "POST":
-#         form = StudentPersonalDetailsForm(request.POST, instance=branch)
-#         if form.is_valid():
-#             try:
-#                 form.save()
-#                 model = form.instance
-#                 return redirect('/student_search')
-#             except Exception as e:
-#                 pass
-#     return render(request, 'student_update.html', {'form': form})
-
-
-def student_delete(request, std_id):
-    state = StudentPersonalDetails.objects.get(std_id=std_id)
+def delete_student(request, id):
+    student = get_object_or_404(StudentPersonalDetails, id=id)
     try:
-        state.delete()
-    except:
+        student.delete()
+    except Exception as e:
         pass
-    return redirect('/student_search')
+    return redirect('/search_student')
 
 
 """# ****************************************************************************************************************************************************
 # **************************************************************************************************************************************************** """
 
-
-# def previous_school_create(request):
-#     if request.method == 'POST':
-#         form = PreviousSchoolDetailsForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponse('Added successfully')
-#     else:
-#         form = PreviousSchoolDetailsForm()
-#     return render(request, 'previous_school_create.html', {'form': form})
+"""previous_school views """
 
 
 def previous_school_create(request):
@@ -759,38 +891,43 @@ def previous_school_create(request):
     stdname = StudentPersonalDetails.objects.all()
     form = PreviousSchoolDetailsForm(request.POST or None)
     if form.is_valid():
-        print("HELOO______________________________________________________")
         form.save()
+        return HttpResponse('added successfully')
     else:
-        print("HELOO______________________________________________________111")
-        print(request.POST)
-        messages.error(request, form.errors)
         context['form'] = form
 
     context["stdname"] = stdname
     return render(request, "Details/previous_school_create.html", context)
 
 
-def previous_school_search(request):
-    schools = PreviousSchoolDetails.objects.all()
-    return render(request, "Details/previous_school_search.html", {'schools': schools})
+def search_previousschool(request):
+    previousschools = PreviousSchoolDetails.objects.all()
+    return render(request, "search_previousschool.html", {'previousschools': previousschools})
 
 
-def previous_school_update(request, pk):
-    school = get_object_or_404(PreviousSchoolDetails, pk=pk)
-    form = PreviousSchoolDetailsForm(instance=school)
+def update_previousschool(request, id):
+    previousschool = get_object_or_404(PreviousSchoolDetails, id=id)
+    form = PreviousSchoolDetailsForm(instance=previousschool)
+
     if request.method == "POST":
-        form = PreviousSchoolDetailsForm(request.POST, request.FILES, instance=school)
+        form = PreviousSchoolDetailsForm(request.POST, instance=previousschool)
         if form.is_valid():
-            form.save()
-            return redirect('/previous_school_search')
-    return render(request, 'Details/previous_school_update.html', {'form': form})
+            try:
+                form.save()
+                return redirect('/search_previousschool')
+            except Exception as e:
+                pass
+
+    return render(request, 'update_previousschool.html', {'form': form})
 
 
-def previous_school_delete(request, pk):
-    school = get_object_or_404(PreviousSchoolDetails, pk=pk)
-    school.delete()
-    return redirect('/previous_school_search')
+def delete_previousschool(request, id):
+    previousschool = get_object_or_404(PreviousSchoolDetails, id=id)
+    try:
+        previousschool.delete()
+    except Exception as e:
+        pass
+    return redirect('/search_previousschool')
 
 
 # ****************************************************************************************************************************************************
@@ -852,7 +989,7 @@ def student_delete_api(request, pk):
 """# ****************************************************************************************************************************************************
 # **************************************************************************************************************************************************** """
 
-"""previous_school APIs """ 
+"""previous_school APIs """
 
 
 @api_view(['POST'])
