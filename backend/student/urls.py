@@ -39,18 +39,22 @@ urlpatterns = [
     path('update_city/<int:id>/', views.update_city, name='update_city'),
     path('delete_city/<int:id>/', views.delete_city, name='delete_city'),
 
+    path('create_tehsil', views.create_tehsil, name='create_tehsil'),
     path('search_tehsil/', views.search_tehsil, name='search_tehsil'),
     path('update_tehsil/<int:id>/', views.update_tehsil, name='update_tehsil'),
     path('delete_tehsil/<int:id>/', views.delete_tehsil, name='delete_tehsil'),
 
+    path('nationality_create', views.nationality_create, name='nationality_create'),
     path('search_nationality/', views.search_nationality, name='search_nationality'),
     path('update_nationality/<int:id>/', views.update_nationality, name='update_nationality'),
     path('delete_nationality/<int:id>/', views.delete_nationality, name='delete_nationality'),
 
+    path('mothertongue_create', views.mothertongue_create, name='mothertongue_create'),
     path('search_mothertongue/', views.search_mothertongue, name='search_mothertongue'),
     path('update_mothertongue/<int:id>/', views.update_mothertongue, name='update_mothertongue'),
     path('delete_mothertongue/<int:id>/', views.delete_mothertongue, name='delete_mothertongue'),
 
+    path('schoolboard_create', views.schoolboard_create, name='schoolboard_create'),
     path('search_schoolboard/', views.search_schoolboard, name='search_schoolboard'),
     path('update_schoolboard/<int:id>/', views.update_schoolboard, name='update_schoolboard'),
     path('delete_schoolboard/<int:id>/', views.delete_schoolboard, name='delete_schoolboard'),

@@ -1,20 +1,21 @@
- 
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% block content %}
 
-<table border="1">
+<table border="2">
     <tr>
-        <th>question_type</th>
-        <th>subject</th>
+        <th>Question Type</th>
+        <th>Subject</th>
         <th>Question</th>
         <th>Diagram</th>
-        <th>option1</th>
-        <th>option2</th>
-        <th>option3</th>
-        <th>option4</th>
-        <th>solution</th>
-        <th>option_choices</th>
-        <th>question_weightage</th>
-        <th>update</th>
+        <th>Option1</th>
+        <th>Option2</th>
+        <th>Option3</th>
+        <th>Option4</th>
+        <th>Solution</th>
+        <th>Option choices</th>
+        <th>Question weightage</th>
+        <th>Update</th>
     </tr>
     {%for i in quesbm %}
     <tr>
@@ -31,8 +32,10 @@
         <td>{{i.solution}}</td>
         <td>{{i.option_choices}}</td>
         <td>{{i.question_weightage}}</td>
-        <td> <a href="/update_question_bank/<int:id>"> update</a>
-            <a href="/delete_question_bank/<int:id>"> delete</a></td>
+        <td>
+            <button><a href="/update_question_bank/<int:id>"> update</a></button>
+            <button><a href="/delete_question_bank/<int:id>"> delete</a></button>
+        </td>
 
     </tr>
     {% endfor %}

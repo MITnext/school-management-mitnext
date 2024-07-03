@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Download Questions</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
@@ -44,6 +46,9 @@
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Download"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Cancel"></td>
             </tr>
         </table>
     </form>

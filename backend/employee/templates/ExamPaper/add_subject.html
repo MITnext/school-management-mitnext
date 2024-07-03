@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Subject</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <form method="POST" action="" >
@@ -31,6 +33,10 @@
             <tr>
                 <td colspan="2" align="center">
                     <input type="submit" name="btnsubmit" id="btnsubmit" value="save">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
                     <input type="submit" name="btncancel" id="btncancel" value="Cancel">
                 </td>
             </tr>

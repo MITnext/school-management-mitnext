@@ -18,7 +18,7 @@ def section_create(request):
         form = SectionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('section_list')
+            return redirect('/search_section')
     else:
         form = SectionForm()
     return render(request, 'section_class/section_create.html', {'form': form})
@@ -601,7 +601,6 @@ def city_create(request):
         cities.save()
         return HttpResponse('added')
     else:
-        messages.error(request, cities.errors)
         context['form'] = cities
 
     context["states"] = states
@@ -685,6 +684,19 @@ def city_delete_api(request, pk):
 """ Tehsil views """
 
 
+def create_tehsil(request):
+    context = {}
+    states = State_master.objects.all()
+    tehsil = TehsilMasterForm(request.POST or None)
+    if tehsil.is_valid():
+        tehsil.save()
+        return HttpResponse('added')
+    else:
+        context['form'] = tehsil
+    context["states"] = states
+    return render(request, "state_city/tehsil_create.html", context)
+
+
 def search_tehsil(request):
     tehsils = Tehsil_master.objects.all()
     return render(request, "state_city/search_tehsil.html", {'tehsils': tehsils})
@@ -719,6 +731,17 @@ def delete_tehsil(request, id):
 # ****************************************************************************************************************************************************  """
 
 """ Nationality views """
+
+
+def nationality_create(request):
+    if request.method == 'POST':
+        form = NationalityMasterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('added successfully')
+    else:
+        form = NationalityMasterForm()
+    return render(request, 'Religion_caste/nationality_create.html', {'form': form})
 
 
 def search_nationality(request):
@@ -757,6 +780,17 @@ def delete_nationality(request, id):
 """ Mother Tongue views """
 
 
+def mothertongue_create(request):
+    if request.method == 'POST':
+        form = MotherTongueMasterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('added successfully')
+    else:
+        form = MotherTongueMasterForm()
+    return render(request, 'Details/mothertongue_create.html', {'form': form})
+
+
 def search_mothertongue(request):
     mothertongues = motherTongue_master.objects.all()
     return render(request, "Details/search_mothertongue.html", {'mothertongues': mothertongues})
@@ -791,6 +825,17 @@ def delete_mothertongue(request, id):
 # ****************************************************************************************************************************************************  """
 
 """ School Board views """
+
+
+def schoolboard_create(request):
+    if request.method == 'POST':
+        form = SchoolBoardMasterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('added successfully')
+    else:
+        form = SchoolBoardMasterForm()
+    return render(request, 'Details/schoolboard_create.html', {'form': form})
 
 
 def search_schoolboard(request):

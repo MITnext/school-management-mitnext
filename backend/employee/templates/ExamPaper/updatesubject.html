@@ -1,11 +1,12 @@
-
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% block content %}
 <div class="card-body">
-    <h4>Update Subject</h4>
+    <h4 align="center">Update Subject</h4>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <a type="button" class="btn btn-danger" href="/search_subject">Cancel</a>
+        <button><a type="button" class="btn btn-danger" href="/search_subject">Cancel</a></button>
         <button type="submit" class="btn btn-success">Update</button>
     </form>
 </div>
