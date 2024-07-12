@@ -20,8 +20,8 @@
             <td>{{ stdclass.section.sec_name }}</td>
             <td>{{ stdclass.description }}</td>
             <td>
-                <a href="/update_stdclass/{{ stdclass.id }}">Update</a>
-                <a href="/delete_stdclass/{{ stdclass.id }}">Delete</a>
+                <button><a href="/update_stdclass/{{ stdclass.id }}">Update</a></button>
+                <button><a href="/delete_stdclass/{{ stdclass.id }}">Delete</a></button>
             </td>
         </tr>
         {% endfor %}

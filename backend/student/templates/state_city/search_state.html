@@ -13,13 +13,13 @@
             <th>State Shortcut</th>
             <th>Actions</th>
         </tr>
-        {% for state in states %}
+        {%for i in subm %}
         <tr>
-            <td>{{ state.state_name }}</td>
-            <td>{{ state.state_shortcut }}</td>
+            <td>{{ i.state_name }}</td>
+            <td>{{ i.state_shortcut }}</td>
             <td>
-                <a href="/update_state/{{ state.id }}">Update</a>
-                <a href="/delete_state/{{ state.id }}">Delete</a>
+                <a href="/update_state/{{ i.id }}">Update</a>
+                <a href="/delete_state/{{ i.id }}">Delete</a>
             </td>
         </tr>
         {% endfor %}

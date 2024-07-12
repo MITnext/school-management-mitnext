@@ -18,8 +18,8 @@
             <td>{{ section.sec_name }}</td>
             <td>{{ section.description }}</td>
             <td>
-                <a href="/update_section/{{ section.id }}">Update</a>
-                <a href="/delete_section/{{ section.id }}">Delete</a>
+                <button><a href="/update_section/{{ section.id }}">Update</a></button>
+                <button><a href="/delete_section/{{ section.id }}">Delete</a></button>
             </td>
         </tr>
         {% endfor %}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Student Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Update Student Details</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <label for="std_class">Class</label>
+        <select name="std_class" id="std_class">
+            {% for class in stdclass %}
+                <option value="{{ class.id }}" {% if form.instance.std_class.id == class.id %}selected{% endif %}>{{ class.std_class_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="std_section">Section</label>
+        <select name="std_section" id="std_section">
+            {% for section in sections %}
+                <option value="{{ section.id }}" {% if form.instance.std_section.id == section.id %}selected{% endif %}>{{ section.section_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="caste_main">Main Caste</label>
+        <select name="caste_main" id="caste_main">
+            {% for caste in castem %}
+                <option value="{{ caste.id }}" {% if form.instance.caste_main.id == caste.id %}selected{% endif %}>{{ caste.caste_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="caste_sub">Sub Caste</label>
+        <select name="caste_sub" id="caste_sub">
+            {% for caste in castes %}
+                <option value="{{ caste.id }}" {% if form.instance.caste_sub.id == caste.id %}selected{% endif %}>{{ caste.sub_caste_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="religion">Religion</label>
+        <select name="religion" id="religion">
+            {% for religion in religions %}
+                <option value="{{ religion.id }}" {% if form.instance.religion.id == religion.id %}selected{% endif %}>{{ religion.religion_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="nationality">Nationality</label>
+        <select name="nationality" id="nationality">
+            {% for nation in nations %}
+                <option value="{{ nation.id }}" {% if form.instance.nationality.id == nation.id %}selected{% endif %}>{{ nation.nationality_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="mother_tongue">Mother Tongue</label>
+        <select name="mother_tongue" id="mother_tongue">
+            {% for language in mothertongues %}
+                <option value="{{ language.id }}" {% if form.instance.mother_tongue.id == language.id %}selected{% endif %}>{{ language.language_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="postal_city">City</label>
+        <select name="postal_city" id="postal_city">
+            {% for city in cities %}
+                <option value="{{ city.id }}" {% if form.instance.postal_city.id == city.id %}selected{% endif %}>{{ city.city_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="tehsil">Tehsil</label>
+        <select name="tehsil" id="tehsil">
+            {% for tehsil in tehsils %}
+                <option value="{{ tehsil.id }}" {% if form.instance.tehsil.id == tehsil.id %}selected{% endif %}>{{ tehsil.tehsil_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="postal_state">State</label>
+        <select name="postal_state" id="postal_state">
+            {% for state in states %}
+                <option value="{{ state.id }}" {% if form.instance.postal_state.id == state.id %}selected{% endif %}>{{ state.state_name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

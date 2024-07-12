@@ -117,7 +117,7 @@ def std_class_create(request):
     stdclass = StdClassForm(request.POST)
     if stdclass.is_valid():
         stdclass.save()
-        return redirect('std_class_list')
+        return redirect('/search_stdclass')
     else:
         context['form'] = stdclass
 
@@ -217,7 +217,7 @@ def religion_create(request):
         form = ReligionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('religion_list')
+            return redirect('/search_religion')
     else:
         form = ReligionForm()
     return render(request, 'Religion_caste/religion_create.html', {'form': form})
@@ -315,7 +315,7 @@ def maincaste_create(request):
         form = MainCasteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('casteMain_list')
+            return redirect('/search_maincaste')
     else:
         form = MainCasteForm()
     return render(request, 'Religion_caste/maincaste_create.html', {'form': form})
@@ -413,7 +413,7 @@ def subcaste_create(request):
         form = SubCasteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('casteSub_list')
+            return redirect('/search_subcaste')
     else:
         form = SubCasteForm()
     return render(request, 'Religion_caste/subcaste_create.html', {'form': form})
@@ -436,7 +436,6 @@ def update_subcaste(request, id):
                 return redirect('/search_subcaste')
             except Exception as e:
                 pass
-
     return render(request, 'Religion_caste/update_subcaste.html', {'form': form})
 
 
@@ -511,7 +510,7 @@ def state_create(request):
         form = StateForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('added successfully')
+            return redirect('/search_state')
     else:
         form = StateForm()
     return render(request, 'state_city/state_create.html', {'form': form})
@@ -522,23 +521,23 @@ def search_state(request):
     return render(request, "state_city/search_state.html", {'subm': sal})
 
 
-def update_state(request, pk):
-    branch = State_master.objects.get(pk=pk)
-    form = StateForm(initial={'statename': branch.state_name, 'stateshortcut': branch.state_shortcut, })
+def update_state(request, id):
+    state = get_object_or_404(State_master, id=id)
+    form = StateForm(instance=state)
+
     if request.method == "POST":
-        form = StateForm(request.POST, instance=branch)
+        form = StateForm(request.POST, instance=state)
         if form.is_valid():
             try:
                 form.save()
-                model = form.instance
                 return redirect('/search_state')
             except Exception as e:
                 pass
     return render(request, 'state_city/update_state.html', {'form': form})
 
 
-def delete_state(request, pk):
-    state = State_master.objects.get(pk=pk)
+def delete_state(request, id):
+    state = State_master.objects.get(id=id)
     try:
         state.delete()
     except:
@@ -599,7 +598,7 @@ def city_create(request):
     cities = CityForm(request.POST or None)
     if cities.is_valid():
         cities.save()
-        return HttpResponse('added')
+        return redirect('/search_city')
     else:
         context['form'] = cities
 
@@ -612,8 +611,8 @@ def search_city(request):
     return render(request, "state_city/search_city.html", {'subm': sal})
 
 
-def update_city(request, pk):
-    branch = City_master.objects.get(pk=pk)
+def update_city(request, id):
+    branch = City_master.objects.get(id=id)
     form = CityForm(
         initial={'state': branch.state, 'cityname': branch.city_name, 'cityshortcut': branch.city_shortcut, })
     if request.method == "POST":
@@ -628,8 +627,8 @@ def update_city(request, pk):
     return render(request, 'state_city/update_city.html', {'form': form})
 
 
-def delete_city(request, pk):
-    city = City_master.objects.get(pk=pk)
+def delete_city(request, id):
+    city = City_master.objects.get(id=id)
     try:
         city.delete()
     except:
@@ -690,7 +689,7 @@ def create_tehsil(request):
     tehsil = TehsilMasterForm(request.POST or None)
     if tehsil.is_valid():
         tehsil.save()
-        return HttpResponse('added')
+        return redirect('/search_tehsil')
     else:
         context['form'] = tehsil
     context["states"] = states
@@ -738,7 +737,7 @@ def nationality_create(request):
         form = NationalityMasterForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('added successfully')
+            return redirect('/search_nationality')
     else:
         form = NationalityMasterForm()
     return render(request, 'Religion_caste/nationality_create.html', {'form': form})
@@ -832,7 +831,7 @@ def schoolboard_create(request):
         form = SchoolBoardMasterForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('added successfully')
+            return redirect('/search_schoolboard')
     else:
         form = SchoolBoardMasterForm()
     return render(request, 'Details/schoolboard_create.html', {'form': form})
@@ -881,23 +880,40 @@ def student_create(request):
     castem = MainCaste_master.objects.all()
     castes = SubCaste_master.objects.all()
     religions = Religion_master.objects.all()
-    form = StudentPersonalDetailsForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return HttpResponse('added successfully')
+    nations = Nationality_master.objects.all()
+    mothertongues = motherTongue_master.objects.all()
+    cities = City_master.objects.all()
+    tehsils = Tehsil_master.objects.all()
+    states = State_master.objects.all()
+
+    if request.method == 'POST':
+        form = StudentPersonalDetailsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/search_student')
+        else:
+            messages.error(request, form.errors)
     else:
-        context['form'] = form
+        form = StudentPersonalDetailsForm()
+
+    context['form'] = form
     context['stdclass'] = stdclass
     context['sections'] = sections
     context['castem'] = castem
     context['castes'] = castes
     context['religions'] = religions
+    context['nations'] = nations
+    context['mothertongues'] = mothertongues
+    context['cities'] = cities
+    context['tehsils'] = tehsils
+    context['states'] = states
+
     return render(request, 'Details/student_create.html', context)
 
 
 def search_student(request):
     students = StudentPersonalDetails.objects.all()
-    return render(request, "search_student.html", {'students': students})
+    return render(request, "Details/student_search.html", {'students': students})
 
 
 def update_student(request, id):
@@ -913,7 +929,7 @@ def update_student(request, id):
             except Exception as e:
                 pass
 
-    return render(request, 'update_student.html', {'form': form})
+    return render(request, 'Details/update_student.html', {'form': form})
 
 
 def delete_student(request, id):
@@ -934,6 +950,10 @@ def delete_student(request, id):
 def previous_school_create(request):
     context = {}
     stdname = StudentPersonalDetails.objects.all()
+    boards = SchoolBoard_master.objects.all()
+    cities = City_master.objects.all()
+    tehsils = Tehsil_master.objects.all()
+    states = State_master.objects.all()
     form = PreviousSchoolDetailsForm(request.POST or None)
     if form.is_valid():
         form.save()
@@ -942,12 +962,16 @@ def previous_school_create(request):
         context['form'] = form
 
     context["stdname"] = stdname
+    context["boards"] = boards
+    context['cities'] = cities
+    context['tehsils'] = tehsils
+    context['states'] = states
     return render(request, "Details/previous_school_create.html", context)
 
 
 def search_previousschool(request):
     previousschools = PreviousSchoolDetails.objects.all()
-    return render(request, "search_previousschool.html", {'previousschools': previousschools})
+    return render(request, "Details/search_previousschool.html", {'previousschools': previousschools})
 
 
 def update_previousschool(request, id):
@@ -963,7 +987,7 @@ def update_previousschool(request, id):
             except Exception as e:
                 pass
 
-    return render(request, 'update_previousschool.html', {'form': form})
+    return render(request, 'Details/update_previousschool.html', {'form': form})
 
 
 def delete_previousschool(request, id):
