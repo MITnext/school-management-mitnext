@@ -5,6 +5,7 @@
     <title>Student Personal Details</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <h1>Student Personal Details Form</h1>
@@ -76,7 +77,9 @@
                     {% for i in stdclass %}
                         <option value="{{ i.id }}">{{ i.class_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                 <button type="button" class="openModal" data-modal-id="classModal"><i class="fas fa-plus"></i> ADD</button>
+                </td>
             </tr>
             <tr>
                 <td><label for="std_section">Section:</label></td>
@@ -85,7 +88,9 @@
                     {% for i in sections %}
                         <option value="{{ i.id }}">{{ i.sec_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                <button type="button" class="openModal" data-modal-id="sectionModal"><i class="fas fa-plus"></i> ADD</button>
+                </td>
             </tr>
             <tr>
                 <td><label for="std_rollno">Roll Number:</label></td>
@@ -114,7 +119,8 @@
                     {% for i in nations %}
                         <option value="{{ i.id }}">{{ i.nationality_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                <button type="button" class="openModal" data-modal-id="nationalityModal"><i class="fas fa-plus"></i> ADD</button></td>
             </tr>
             <tr>
                 <td><label for="domicile">Domicile:</label></td>
@@ -127,7 +133,8 @@
                     {% for i in mothertongues %}
                         <option value="{{ i.id }}">{{ i.mothertongue_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                <button type="button" class="openModal" data-modal-id="motherTongueModal"><i class="fas fa-plus"></i> ADD</button></td>
             </tr>
             <tr>
                 <td><label for="religion">Religion:</label></td>
@@ -136,7 +143,8 @@
                     {% for religion in religions %}
                         <option value="{{ religion.id }}">{{ religion.religion_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                <button type="button" class="openModal" data-modal-id="religionModal"><i class="fas fa-plus"></i> ADD</button></td>
             </tr>
             <tr>
                 <td><label for="caste_main">Main Caste:</label></td>
@@ -145,7 +153,8 @@
                     {% for i in castem %}
                         <option value="{{ i.id }}">{{ i.maincaste_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                 <button type="button" class="openModal" data-modal-id="mainCasteModal"><i class="fas fa-plus"></i> ADD</button></td>
             </tr>
             <tr>
                 <td><label for="caste_sub">Sub Caste:</label></td>
@@ -154,7 +163,8 @@
                     {% for i in castes %}
                         <option value="{{ i.id }}">{{ i.castesub_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                <button type="button" class="openModal" data-modal-id="subCasteModal"><i class="fas fa-plus"></i> ADD</button></td>
             </tr>
             <tr>
                 <td><label for="ph_number_father">Father's Phone Number:</label></td>
@@ -183,7 +193,8 @@
                     {% for i in cities %}
                         <option value="{{ i.id }}">{{ i.city_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                <button type="button" class="openModal" data-modal-id="postalCityModal"><i class="fas fa-plus"></i> ADD</button></td>
             </tr>
             <tr>
                 <td><label for="tehsil">Postal Tehsil:</label></td>
@@ -192,7 +203,8 @@
                     {% for i in tehsils %}
                         <option value="{{ i.id }}">{{ i.tehsil_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                <button type="button" class="openModal" data-modal-id="tehsilModal"><i class="fas fa-plus"></i> ADD</button></td>
             </tr>
             <tr>
                 <td><label for="postal_state">Postal State:</label></td>
@@ -201,7 +213,8 @@
                     {% for i in states %}
                         <option value="{{ i.id }}">{{ i.state_name }}</option>
                     {% endfor %}
-                </select></td>
+                </select>
+                <button type="button" class="openModal" data-modal-id="stateModal"><i class="fas fa-plus"></i> ADD</button></td>
             </tr>
             <tr>
                 <td><label for="postal_zip_code">Postal Zip Code:</label></td>
@@ -223,5 +236,233 @@
             </tr>
         </table>
     </form>
+
+    <!-- Modals -->
+    <!-- Each modal's form submission handled by the included script -->
+    <div id="classModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="classModal">&times;</span>
+            <h2>Add New Class</h2>
+            <form id="classForm" method="post" action="{% url 'std_class_create' %}">
+                {% csrf_token %}
+                <label for="class_name">Class Name:</label>
+                <input type="text" name="class_name" id="class_name" maxlength="15" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description"></textarea>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="sectionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="sectionModal">&times;</span>
+            <h2>Add New Section</h2>
+            <form id="sectionForm" method="post" action="{% url 'section_create' %}">
+                {% csrf_token %}
+                <label for="sec_name">Section Name:</label>
+                <input type="text" name="sec_name" id="sec_name" maxlength="30" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description1"></textarea>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="nationalityModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="nationalityModal">&times;</span>
+            <h2>Add New Nationality</h2>
+            <form id="nationalityForm" method="post" action="{% url 'nationality_create' %}">
+                {% csrf_token %}
+                <label for="nationality_name">Nationality Name:</label>
+                <input type="text" name="nationality_name" id="nationality_name" maxlength="100" required>
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description2">
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="motherTongueModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="motherTongueModal">&times;</span>
+            <h2>Add New Mother Tongue</h2>
+            <form id="motherTongueForm" method="post" action="{% url 'mothertongue_create' %}">
+                {% csrf_token %}
+                <label for="mothertongue_name">Mother Tongue:</label>
+                <input type="text" name="mothertongue_name" id="mothertongue_name" maxlength="100" required>
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description3">
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="religionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="religionModal">&times;</span>
+            <h2>Add New Religion</h2>
+            <form id="religionForm" method="post" action="{% url 'religion_create' %}">
+                {% csrf_token %}
+                <label for="religion_name">Religion Name:</label>
+                <input type="text" name="religion_name" id="religion_name" maxlength="10" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description4"></textarea>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="mainCasteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="mainCasteModal">&times;</span>
+            <h2>Add New Main Caste</h2>
+            <form id="mainCasteForm" method="post" action="{% url 'casteMain_create' %}">
+                {% csrf_token %}
+                <label for="maincaste_name">Main Caste Name:</label>
+                <input type="text" name="maincaste_name" id="maincaste_name" maxlength="50" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description5"></textarea>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="subCasteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="subCasteModal">&times;</span>
+            <h2>Add New Sub Caste</h2>
+            <form id="subCasteForm" method="post" action="{% url 'casteSub_create' %}">
+                {% csrf_token %}
+                <label for="castesub_name">Sub Caste Name:</label>
+                <input type="text" name="castesub_name" id="castesub_name" maxlength="50" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description6"></textarea>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="postalCityModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="postalCityModal">&times;</span>
+            <h2>Add New Postal City</h2>
+            <form id="postalCityForm" method="post" action="{% url 'city_create' %}">
+                {% csrf_token %}
+                <label for="state">State:</label>
+                    <select name="state" id="state" required>
+                        {% for state in states %}
+                            <option value="{{ state.id }}">{{ state.state_name }}</option>
+                        {% endfor %}
+                    </select>
+
+                <label for="city_name">City Name:</label>
+                <input type="text" name="city_name" id="city_name" maxlength="100" required>
+                <label for="city_shortcut">City Shortcut:</label>
+                <input type="text" name="city_shortcut" id="city_shortcut" maxlength="4" required>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="tehsilModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="tehsilModal">&times;</span>
+            <h2>Add New Tehsil</h2>
+            <form id="tehsilForm" method="post" action="{% url 'create_tehsil' %}">
+                {% csrf_token %}
+                <label for="tehsil_name">Tehsil Name:</label>
+                <input type="text" name="tehsil_name" id="tehsil_name" maxlength="100" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description8"></textarea>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="stateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal-id="stateModal">&times;</span>
+            <h2>Add New State</h2>
+            <form id="stateForm" method="post" action="{% url 'state_create' %}">
+                {% csrf_token %}
+                <label for="state_name">State Name:</label>
+                <input type="text" name="state_name" id="state_name" maxlength="100" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description9"></textarea>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Modal functionality
+            var modals = document.querySelectorAll('.modal');
+            var openModalButtons = document.querySelectorAll('.openModal');
+            var closeModalButtons = document.querySelectorAll('.close');
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    var modalId = this.getAttribute('data-modal-id');
+                    document.getElementById(modalId).style.display = 'block';
+                });
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    var modalId = this.getAttribute('data-modal-id');
+                    document.getElementById(modalId).style.display = 'none';
+                });
+            });
+
+            window.onclick = function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            };
+
+            // Handle the AJAX form submission
+            modals.forEach(modal => {
+                var form = modal.querySelector('form');
+                if (form) {
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        var formData = new FormData(this);
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", this.action, true);
+                        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200) {
+                                    var response = JSON.parse(xhr.responseText);
+                                    var selectId = modal.getAttribute('id').replace('Modal', '').toLowerCase();
+                                    var select = document.getElementById(selectId);
+                                    var newOption = document.createElement("option");
+                                    newOption.value = response.id;
+                                    newOption.text = response[selectId + '_name'];
+                                    select.appendChild(newOption);
+                                    modal.style.display = "none";
+                                    // Show success message
+                                    var message = document.getElementById("message");
+                                    if (message) {
+                                        message.style.display = "block";
+                                        setTimeout(function() {
+                                            message.style.display = "none";
+                                        }, 3000);
+                                    }
+                                } else {
+                                    // Handle error case
+                                    alert('An error occurred while adding the data.');
+                                }
+                            }
+                        };
+                        xhr.send(formData);
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
