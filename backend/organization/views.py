@@ -11,6 +11,9 @@ from .models import Profile
 from .forms import RegistrationForm, LoginForm, OTPForm, StudentRegistrationForm
 from datetime import timedelta, datetime
 import random
+from twilio.rest.frontline_api.v1 import user
+from twilio.rest import Client
+
 
 
 def register_view(request):
@@ -83,6 +86,13 @@ def generate_otp():
     return otp, otp_expiration
 
 
+def send_otp_sms(phone_number, otp):
+    account_sid = 'AC72dd96b35f9e7e14db00e73f087f29da'
+    auth_token = '337e1d6d0ebab1c304676eba8b051ebd'
+    client = Client(account_sid, auth_token)
+    message = f"Your OTP is {otp}. It is valid for 15 minutes."
+    twilio_number = '+12566855726'
+    client.messages.create(body=message, from_=twilio_number, to=phone_number)
 
 
 def validate_otp(request):
