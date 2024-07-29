@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Search Sections</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Search Sections</h1>
@@ -16,8 +18,8 @@
             <td>{{ section.sec_name }}</td>
             <td>{{ section.description }}</td>
             <td>
-                <a href="/update_section/{{ section.id }}">Update</a>
-                <a href="/delete_section/{{ section.id }}">Delete</a>
+                <button><a href="/update_section/{{ section.id }}">Update</a></button>
+                <button><a href="/delete_section/{{ section.id }}">Delete</a></button>
             </td>
         </tr>
         {% endfor %}

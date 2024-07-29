@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Search Cities</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Search Cities</h1>
@@ -12,14 +14,14 @@
             <th>City Shortcut</th>
             <th>Actions</th>
         </tr>
-        {% for city in cities %}
+         {%for i in subm %}
         <tr>
-            <td>{{ city.city_name }}</td>
-            <td>{{ city.state.state_name }}</td>
-            <td>{{ city.city_shortcut }}</td>
+            <td>{{ i.city_name }}</td>
+            <td>{{ i.state.state_name }}</td>
+            <td>{{ i.city_shortcut }}</td>
             <td>
-                <a href="/update_city/{{ city.id }}">Update</a>
-                <a href="/delete_city/{{ city.id }}">Delete</a>
+                <a href="/update_city/{{ i.id }}">Update</a>
+                <a href="/delete_city/{{ i.id }}">Delete</a>
             </td>
         </tr>
         {% endfor %}

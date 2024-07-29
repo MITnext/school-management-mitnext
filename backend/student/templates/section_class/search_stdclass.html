@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Search Classes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Search Classes</h1>
@@ -18,8 +20,8 @@
             <td>{{ stdclass.section.sec_name }}</td>
             <td>{{ stdclass.description }}</td>
             <td>
-                <a href="/update_stdclass/{{ stdclass.id }}">Update</a>
-                <a href="/delete_stdclass/{{ stdclass.id }}">Delete</a>
+                <button><a href="/update_stdclass/{{ stdclass.id }}">Update</a></button>
+                <button><a href="/delete_stdclass/{{ stdclass.id }}">Delete</a></button>
             </td>
         </tr>
         {% endfor %}

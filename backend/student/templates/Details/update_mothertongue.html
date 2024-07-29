@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Update Mother Tongue</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Update Mother Tongue</h1>
@@ -10,7 +12,7 @@
         <table border="2">
             <tr>
                 <th>Mother Tongue Name:</th>
-                <td>{{ form.castesub_name }}</td>
+                <td>{{ form.mothertongue_name }}</td>
             </tr>
             <tr>
                 <th>Description:</th>

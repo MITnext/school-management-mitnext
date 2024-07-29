@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nationality Master</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Nationality Master Form</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td><label for="nationality_name">Nationality Name:</label></td>
+                <td><input type="text" name="nationality_name" id="nationality_name" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="description">Description:</label></td>
+                <td><input type="text" name="description" id="description"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button><input type="submit"  value="save"></button>
+                    <button><input type="submit" value="Cancel"></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Update Class</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Update Class</h1>
@@ -22,8 +24,8 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <a href="/search_stdclass">Cancel</a>
                     <button type="submit">Update</button>
+                    <button><a href="/search_stdclass">Cancel</a></button>
                 </td>
             </tr>
         </table>

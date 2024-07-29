@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Search Mother Tongues</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Search Mother Tongues</h1>
@@ -13,7 +15,7 @@
         </tr>
         {% for mothertongue in mothertongues %}
         <tr>
-            <td>{{ mothertongue.castesub_name }}</td>
+            <td>{{ mothertongue.mothertongue_name }}</td>
             <td>{{ mothertongue.description }}</td>
             <td>
                 <a href="/update_mothertongue/{{ mothertongue.id }}">Update</a>

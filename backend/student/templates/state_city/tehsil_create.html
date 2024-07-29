@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tehsil Master</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Tehsil Master Form</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td><label for="state">State:</label></td>
+                <td><select name="state" id="state" required>
+                    {% for state in states %}
+                        <option value="{{ state.id }}">{{ state.state_name }}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="tehsil_name">Tehsil Name:</label></td>
+                <td><input type="text" name="tehsil_name" id="tehsil_name" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="description">Description:</label></td>
+                <td><input type="text" name="description" id="description"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button><input type="submit" value="save"></button>
+                    <button><input type="submit" value="Cancel"></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

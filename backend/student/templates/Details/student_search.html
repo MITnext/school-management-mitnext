@@ -10,25 +10,76 @@
     <table border="2">
         <thead>
             <tr>
-                <th>Student Name</th>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Father's Name</th>
+                <th>Surname</th>
+                <th>Mother's Name</th>
+                <th>Gender</th>
+                <th>Blood Group</th>
                 <th>Class</th>
+                <th>Section</th>
+                <th>Roll Number</th>
                 <th>Date of Birth</th>
+                <th>Birth Place</th>
+                <th>Aadhar Number</th>
+                <th>Main Caste</th>
+                <th>Sub Caste</th>
+                <th>Religion</th>
+                <th>Nationality</th>
+                <th>Domicile</th>
+                <th>Mother Tongue</th>
                 <th>Father's Phone Number</th>
                 <th>Mother's Phone Number</th>
                 <th>Email</th>
+                <th>Local Address</th>
+                <th>Postal Address</th>
+                <th>Postal City</th>
+                <th>Tehsil</th>
+                <th>Postal State</th>
+                <th>Postal Zip Code</th>
+                <th>Father's Occupation</th>
+                <th>Mother's Occupation</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for student in subm %}
+            {% for student in students %}
             <tr>
-                <td>{{ student.student_name }}</td>
-                <td>{{ student.student_class }}</td>
+                <td>{{ student.std_id }}</td>
+                <td>{{ student.std_first_name }}</td>
+                <td>{{ student.father_name }}</td>
+                <td>{{ student.surname }}</td>
+                <td>{{ student.mother_name }}</td>
+                <td>{{ student.gender }}</td>
+                <td>{{ student.blood_group }}</td>
+                <td>{{ student.std_class }}</td>
+                <td>{{ student.std_section }}</td>
+                <td>{{ student.std_rollno }}</td>
                 <td>{{ student.dateofbirth }}</td>
+                <td>{{ student.birth_place }}</td>
+                <td>{{ student.aadharnumber }}</td>
+                <td>{{ student.caste_main }}</td>
+                <td>{{ student.caste_sub }}</td>
+                <td>{{ student.religion }}</td>
+                <td>{{ student.nationality }}</td>
+                <td>{{ student.domicile }}</td>
+                <td>{{ student.mother_tongue }}</td>
                 <td>{{ student.ph_number_father }}</td>
                 <td>{{ student.ph_number_mother }}</td>
                 <td>{{ student.email }}</td>
-
+                <td>{{ student.local_address }}</td>
+                <td>{{ student.postal_address }}</td>
+                <td>{{ student.postal_city.city_name }}</td>
+                <td>{{ student.tehsil.tehsil_name }}</td>
+                <td>{{ student.postal_state.state_name }}</td>
+                <td>{{ student.postal_zip_code }}</td>
+                <td>{{ student.father_occupation }}</td>
+                <td>{{ student.mother_occupation }}</td>
+                <td>
+                     <a href="/update_student/{{ student.id }}">Update</a>
+                     <a href="/delete_student/{{ student.id }}">Delete</a>
+                 </td>
             </tr>
             {% endfor %}
         </tbody>

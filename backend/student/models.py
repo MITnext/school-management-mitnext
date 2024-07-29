@@ -11,7 +11,6 @@ class Section_master(models.Model):
 
 class StdClass_master(models.Model):
     class_name = models.CharField(max_length=15)
-    section = models.ForeignKey(Section_master, on_delete=models.CASCADE)
     description = models.TextField()
 
     def __str__(self):
@@ -66,12 +65,12 @@ class Tehsil_master(models.Model):
 
 
 class Nationality_master(models.Model):
-    castesub_name = models.CharField(max_length=50)
+    nationality_name = models.CharField(max_length=50)
     description = models.TextField()
 
 
 class motherTongue_master(models.Model):
-    castesub_name = models.CharField(max_length=50)
+    mothertongue_name = models.CharField(max_length=50)
     description = models.TextField()
 
 

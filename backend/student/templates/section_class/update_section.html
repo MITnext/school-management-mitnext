@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Update Section</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Update Section</h1>
@@ -18,8 +20,8 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <a href="/search_section">Cancel</a>
                     <button type="submit">Update</button>
+                    <button><a href="/search_section">Cancel</a></button>
                 </td>
             </tr>
         </table>
