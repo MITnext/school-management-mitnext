@@ -7,10 +7,8 @@ from rest_framework import status
 from .forms import OrganizationForm
 from django.contrib.auth import login, authenticate, logout
 from django.utils import timezone
-from twilio.rest.frontline_api.v1 import user
 from .models import Profile
 from .forms import RegistrationForm, LoginForm, OTPForm, StudentRegistrationForm
-from twilio.rest import Client
 from datetime import timedelta, datetime
 import random
 
